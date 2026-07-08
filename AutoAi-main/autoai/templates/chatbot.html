@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VahanSathi AI - Smart Car Configurator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/theme.css"/>
+<script src="/static/theme.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --gold: #f59e0b;
+  --success: #10b981;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+.header .stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: -40px auto 60px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section */
+.section {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-left: 52px;
+  margin-top: -16px;
+  margin-bottom: 20px;
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Controls */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label-icon {
+  font-size: 1rem;
+}
+
+.required {
+  color: #ef4444;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.938rem;
+  font-family: inherit;
+  background: white;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.input-separator {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Toggle Switches */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.feature-toggle:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-toggle.active {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-color: var(--primary);
+}
+
+.feature-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+}
+
+.feature-name {
+  font-weight: 500;
+  font-size: 0.938rem;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: #cbd5e1;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.feature-toggle.active .toggle-switch {
+  background: var(--primary);
+}
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.feature-toggle.active .toggle-switch::after {
+  transform: translateX(20px);
+}
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.star {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.star:hover,
+.star.active {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+.star-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-left: 10px;
+}
+
+/* Priority Chips */
+.priority-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.priority-chip {
+  padding: 10px 20px;
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.priority-chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.priority-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Use Case Tags */
+.usecase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.usecase-tag {
+  padding: 8px 16px;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.usecase-tag:hover {
+  background: #e2e8f0;
+}
+
+.usecase-tag.active {
+  background: #dbeafe;
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  max-width: 400px;
+  margin: 40px auto;
+  display: block;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Results */
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.results-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.results-count {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.result-card.best {
+  border: 2px solid var(--gold);
+}
+
+.result-card.best::before {
+  background: linear-gradient(135deg, var(--gold), #f59e0b);
+  width: 6px;
+}
+
+.best-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--gold), #f59e0b);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-md);
+}
+
+.car-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.car-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.car-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.score-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.car-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.spec-item {
+  background: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.spec-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.spec-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.feature-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.feature-badge {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 0.813rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feature-badge.yes {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.feature-badge.no {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.city-note {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 0.938rem;
+  color: #1e40af;
+  font-style: italic;
+  margin-top: 16px;
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.813rem;
+  color: var(--text-primary);
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.no-results-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.no-results-text {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+/* Info Banner */
+.info-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-banner-icon {
+  font-size: 1.5rem;
+}
+
+.info-banner-text {
+  font-size: 0.938rem;
+  color: #78350f;
+  font-weight: 500;
+}
+/* ── NEW: SHARED LAYOUT ── */
+:root {
+  --sidebar-w: 248px;
+  --sky: #EAF4FB;
+  --blue: #3A8DCA;
+  --blue-dark: #2670A8;
+  --blue-light: #5BACD6;
+  --blue-pale: #C8E4F5;
+  --amber: #F5A623;
+  --amber-glow: #FAC05E;
+  --brand-text: #1A2533;
+  --brand-mid: #5A6A7A;
+  --brand-soft: #9AAABB;
+  --brand-border: #D8EAF6;
+  --brand-bg: #F0F7FE;
+  --green: #34A853;
+  --green-pale: #E6F5EC;
+}
+
+/* Override body for sidebar layout */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--brand-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: #fff;
+  border-right: 1.5px solid var(--brand-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 20;
+}
+.sb-brand {
+  padding: 20px 18px 18px;
+  border-bottom: 1.5px solid var(--brand-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sb-logo-svg {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.sb-logo-text {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 18px;
+  color: var(--brand-text);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+.sb-nav {
+  flex: 1;
+  padding: 14px 0;
+  overflow-y: auto;
+}
+.sb-section-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--brand-soft);
+  padding: 12px 20px 4px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand-mid);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  margin: 1px 6px;
+  border-radius: 0 8px 8px 0;
+}
+.nav-item .nav-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.nav-item:hover { color: var(--blue); background: var(--sky); }
+.nav-item:hover .nav-icon { background: var(--blue-pale); }
+.nav-item.active { color: var(--blue); background: linear-gradient(90deg,var(--sky),#fff); border-left-color: var(--blue); font-weight: 600; }
+.nav-item.active .nav-icon { background: var(--blue-pale); }
+.sb-footer {
+  padding: 14px 18px;
+  border-top: 1.5px solid var(--brand-border);
+}
+.sb-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.sb-avatar { width: 32px; height: 32px; background: linear-gradient(135deg,var(--amber),var(--amber-glow)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; font-weight: 700; flex-shrink: 0; }
+.sb-name { font-size: 12.5px; font-weight: 600; color: var(--brand-text); }
+.sb-role { font-size: 10.5px; color: var(--brand-soft); }
+.sb-signout { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--brand-soft); cursor: pointer; padding: 6px 8px; border-radius: 7px; transition: all 0.15s; }
+.sb-signout:hover { color: #C94040; background: #fff0f0; }
+
+/* MAIN WRAPPER */
+.app-main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* TOPBAR */
+.app-topbar {
+  background: #fff;
+  border-bottom: 1.5px solid var(--brand-border);
+  padding: 0 28px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background: var(--sky);
+  border: 1.5px solid var(--blue-pale);
+  color: var(--blue);
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.back-btn:hover { background: var(--blue-pale); border-color: var(--blue); transform: translateX(-1px); }
+.topbar-breadcrumb { font-size: 12px; color: var(--brand-soft); }
+.topbar-breadcrumb span { color: var(--brand-mid); }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.topbar-badge { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 20px; }
+.topbar-btn { width: 32px; height: 32px; border-radius: 8px; background: var(--brand-bg); border: 1.5px solid var(--brand-border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all 0.15s; }
+.topbar-btn:hover { background: var(--sky); border-color: var(--blue-pale); }
+
+/* PAGE HERO */
+.page-hero-bar {
+  background: linear-gradient(120deg, #1A4D7A 0%, var(--blue) 55%, var(--blue-light) 100%);
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size: 36px 36px;
+}
+.page-hero-bar::after { content: '🚗'; position: absolute; right: 24px; bottom: -10px; font-size: 110px; opacity: 0.06; }
+.hero-bar-content { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+.hero-bar-left {}
+.hero-bar-eyebrow { font-size: 10px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+.hero-bar-title { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 5px; letter-spacing: -0.3px; }
+.hero-bar-sub { font-size: 13px; color: rgba(255,255,255,0.72); }
+.hero-bar-stats { display: flex; gap: 0; }
+.hb-stat { text-align: center; padding: 0 22px; border-left: 1px solid rgba(255,255,255,0.15); }
+.hb-stat:first-child { border-left: none; }
+.hb-stat-num { font-size: 24px; font-weight: 700; color: #fff; font-family: Georgia, serif; }
+.hb-stat-lbl { font-size: 10px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* Existing container adapted */
+.container {
+  max-width: 1100px;
+  margin: 28px auto 60px;
+  padding: 0 28px;
+  position: relative;
+  z-index: 2;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <svg class="sb-logo-svg" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="34" height="34" rx="9" fill="url(#sbgrad)"/>
+      <path d="M7 21.5l2.5-6.5h15l2.5 6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+      <rect x="7" y="21.5" width="20" height="4" rx="2" fill="#fff" fill-opacity="0.9"/>
+      <circle cx="11" cy="25.5" r="2" fill="#F5A623"/>
+      <circle cx="23" cy="25.5" r="2" fill="#F5A623"/>
+      <path d="M9.5 15l2-5h11l2 5" fill="#fff" fill-opacity="0.5"/>
+      <defs><linearGradient id="sbgrad" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#2670A8"/><stop offset="1" stop-color="#5BACD6"/></linearGradient></defs>
+    </svg>
+    <span class="sb-logo-text">VahanSathi</span>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main Menu</div>
+    <a class="nav-item" href="/dashboard"><div class="nav-icon">🏠</div>Dashboard</a>
+    <a class="nav-item" href="/carsearch"><div class="nav-icon">🔍</div>Car Search</a>
+    <a class="nav-item" href="/documents"><div class="nav-icon">📁</div>Documents &amp; Reminders</a>
+    <a class="nav-item" href="/maintenance"><div class="nav-icon">🔧</div>Maintenance &amp; Insurance</a>
+    <a class="nav-item active" href="/chat"><div class="nav-icon">💬</div>Car Assistant AI</a>
+    <a class="nav-item" href="/faq"><div class="nav-icon">🤖</div>FAQ Chatbot</a>
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="/settings"><div class="nav-icon">⚙️</div>Settings</a>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-avatar">J</div>
+      <div>
+        <div class="sb-name">Jane Doe</div>
+        <div class="sb-role">My Garage · 1 Vehicle</div>
+      </div>
+    </div>
+    <div class="sb-signout" onclick="doLogout()">⬅ Sign out</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="app-main">
+
+  <!-- TOPBAR -->
+  <div class="app-topbar">
+    <div class="topbar-left">
+      <a class="back-btn" href="/dashboard">← Dashboard</a>
+      <div class="topbar-breadcrumb">VahanSathi <span>/ Car Assistant AI</span></div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge">KNN Powered</span>
+      <div class="topbar-btn">🔔</div>
+      <div class="topbar-btn">❓</div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO BAR -->
+  <div class="page-hero-bar">
+    <div class="hero-bar-content">
+      <div class="hero-bar-left">
+        <div class="hero-bar-eyebrow">AI Car Configurator</div>
+        <div class="hero-bar-title">Find Your Perfect Car</div>
+        <div class="hero-bar-sub">ML-powered recommendations from 90+ Indian cars · 32 features analysed</div>
+      </div>
+      <div class="hero-bar-stats">
+        <div class="hb-stat"><div class="hb-stat-num">90+</div><div class="hb-stat-lbl">Cars</div></div>
+        <div class="hb-stat"><div class="hb-stat-num">32</div><div class="hb-stat-lbl">Features</div></div>
+        <div class="hb-stat"><div class="hb-stat-num">13</div><div class="hb-stat-lbl">Cities</div></div>
+        <div class="hb-stat"><div class="hb-stat-num">KNN</div><div class="hb-stat-lbl">Algorithm</div></div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+
+<!-- Info Banner -->
+<div class="info-banner">
+  <div class="info-banner-icon">💡</div>
+  <div class="info-banner-text">
+    Our AI analyzes safety ratings, ADAS, mileage, ground clearance, and city road conditions to find your ideal match
+  </div>
+</div>
+
+<!-- Budget & Basics -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">💰</div>
+    <div class="section-title">Budget & Basics</div>
+  </div>
+  <div class="section-desc">Set your budget range and select fundamental preferences</div>
+  
+  <div class="grid-2">
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">💵</span>
+        Minimum Budget <span class="required">*</span>
+      </label>
+      <input type="number" id="budget_min" placeholder="e.g. 8" min="1" step="0.5">
+      <small style="color: var(--text-secondary); font-size: 0.813rem;">₹ Lakh (Ex-showroom)</small>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">💵</span>
+        Maximum Budget <span class="required">*</span>
+      </label>
+      <input type="number" id="budget_max" placeholder="e.g. 20" min="1" step="0.5">
+      <small style="color: var(--text-secondary); font-size: 0.813rem;">₹ Lakh (Ex-showroom)</small>
+    </div>
+  </div>
+  
+  <div class="grid-3" style="margin-top: 20px;">
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">🏙️</span>
+        Your City
+      </label>
+      <select id="city">
+        <option>Mumbai</option>
+        <option>Delhi</option>
+        <option>Bangalore</option>
+        <option>Chennai</option>
+        <option>Hyderabad</option>
+        <option>Pune</option>
+        <option>Kolkata</option>
+        <option>Ahmedabad</option>
+        <option>Jaipur</option>
+        <option>Chandigarh</option>
+        <option>Kochi</option>
+        <option>Lucknow</option>
+        <option>Other City</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">⚡</span>
+        Fuel Type
+      </label>
+      <select id="fuel">
+        <option value="any">Any Fuel Type</option>
+        <option value="petrol">Petrol</option>
+        <option value="diesel">Diesel</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="electric">Electric (EV)</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">🚗</span>
+        Car Segment
+      </label>
+      <select id="segment">
+        <option value="">Any Segment</option>
+        <option value="hatchback">Hatchback</option>
+        <option value="sedan">Sedan</option>
+        <option value="compact_suv">Compact SUV</option>
+        <option value="midsize_suv">Mid-size SUV</option>
+        <option value="large_suv">Large SUV</option>
+        <option value="mpv">MPV / 7-Seater</option>
+        <option value="luxury_suv">Luxury SUV</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="grid-3" style="margin-top: 20px;">
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">👥</span>
+        Seating Capacity
+      </label>
+      <select id="seating">
+        <option value="1">No Preference</option>
+        <option value="5" selected>5+ Seats</option>
+        <option value="6">6+ Seats</option>
+        <option value="7">7+ Seats</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">⚙️</span>
+        Transmission
+      </label>
+      <select id="transmission">
+        <option value="">Any Transmission</option>
+        <option value="manual">Manual</option>
+        <option value="automatic">Automatic / CVT / DCT</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">🏭</span>
+        Brand Origin
+      </label>
+      <select id="brand_origin">
+        <option value="">Any Brand</option>
+        <option value="japanese">Japanese (Maruti, Honda, Toyota)</option>
+        <option value="korean">Korean (Hyundai, Kia)</option>
+        <option value="indian">Indian (Tata, Mahindra)</option>
+        <option value="european">European (VW, Skoda, BMW)</option>
+        <option value="american">American (Jeep, Ford)</option>
+        <option value="chinese">Chinese (MG, BYD)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Usage Priority -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div class="section-title">Priority & Usage</div>
+  </div>
+  <div class="section-desc">What matters most to you?</div>
+  
+  <label class="form-label" style="margin-bottom: 12px;">
+    <span class="label-icon">⚖️</span>
+    Top Priority
+  </label>
+  <div class="priority-chips" id="priority-chips">
+    <div class="priority-chip active" data-priority="balanced">⚖️ Balanced</div>
+    <div class="priority-chip" data-priority="mileage">⛽ Best Mileage</div>
+    <div class="priority-chip" data-priority="performance">🚀 Performance</div>
+    <div class="priority-chip" data-priority="safety">🛡️ Safety First</div>
+    <div class="priority-chip" data-priority="comfort">🛋️ Comfort</div>
+    <div class="priority-chip" data-priority="technology">📱 Technology</div>
+    <div class="priority-chip" data-priority="luxury">💎 Luxury</div>
+    <div class="priority-chip" data-priority="offroad">🏔️ Off-road</div>
+  </div>
+  
+  <label class="form-label" style="margin-top: 24px; margin-bottom: 12px;">
+    <span class="label-icon">📍</span>
+    How will you use it? (Select all that apply)
+  </label>
+  <div class="usecase-tags" id="usecase-tags">
+    <div class="usecase-tag" data-usecase="city">🏙️ City Driving</div>
+    <div class="usecase-tag" data-usecase="highway">🛣️ Highway / Long Distance</div>
+    <div class="usecase-tag" data-usecase="family">👨‍👩‍👧 Family Car</div>
+    <div class="usecase-tag" data-usecase="offroad">🏔️ Off-road / Rough Roads</div>
+    <div class="usecase-tag" data-usecase="sporty">🏎️ Sporty / Performance</div>
+    <div class="usecase-tag" data-usecase="luxury">💎 Premium / Luxury</div>
+  </div>
+</div>
+
+<!-- Premium Features -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">✨</div>
+    <div class="section-title">Premium Features (Must-Have)</div>
+  </div>
+  <div class="section-desc">Select features that are absolutely required in your car</div>
+  
+  <div class="features-grid">
+    <div class="feature-toggle" data-feature="sunroof">
+      <div class="feature-info">
+        <div class="feature-icon">🌤️</div>
+        <div class="feature-name">Sunroof / Moonroof</div>
+      </div>
+      <div class="toggle-switch"></div>
+    </div>
+    
+    <div class="feature-toggle" data-feature="adas">
+      <div class="feature-info">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-name">ADAS (Lane Assist, AEB)</div>
+      </div>
+      <div class="toggle-switch"></div>
+    </div>
+    
+    <div class="feature-toggle" data-feature="wireless_charging">
+      <div class="feature-info">
+        <div class="feature-icon">🔋</div>
+        <div class="feature-name">Wireless Charging</div>
+      </div>
+      <div class="toggle-switch"></div>
+    </div>
+    
+    <div class="feature-toggle" data-feature="cruise_control">
+      <div class="feature-info">
+        <div class="feature-icon">🚗</div>
+        <div class="feature-name">Cruise Control</div>
+      </div>
+      <div class="toggle-switch"></div>
+    </div>
+    
+    <div class="feature-toggle" data-feature="parking_sensors">
+      <div class="feature-info">
+        <div class="feature-icon">🅿️</div>
+        <div class="feature-name">Parking Sensors / Camera</div>
+      </div>
+      <div class="toggle-switch"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Safety & Reliability -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🛡️</div>
+    <div class="section-title">Safety & Reliability</div>
+  </div>
+  <div class="section-desc">Ensure your car meets minimum safety and warranty standards</div>
+  
+  <div class="form-group" style="margin-bottom: 24px;">
+    <label class="form-label">
+      <span class="label-icon">⭐</span>
+      Minimum Safety Rating (NCAP)
+    </label>
+    <div class="star-rating" id="safety-stars">
+      <div class="star" data-rating="1">⭐</div>
+      <div class="star" data-rating="2">⭐</div>
+      <div class="star" data-rating="3">⭐</div>
+      <div class="star" data-rating="4">⭐</div>
+      <div class="star" data-rating="5">⭐</div>
+      <span class="star-label" id="star-label">Any rating</span>
+    </div>
+  </div>
+  
+  <div class="grid-3">
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">🎈</span>
+        Minimum Airbags
+      </label>
+      <select id="min_airbags">
+        <option value="0">Any Number</option>
+        <option value="2">2+ Airbags</option>
+        <option value="4">4+ Airbags</option>
+        <option value="6">6+ Airbags</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">
+        <span class="label-icon">📋</span>
+        Minimum Warranty
+      </label>
+      <select id="warranty_years">
+        <option value="0">Any Warranty</option>
+        <option value="2">2+ Years</option>
+        <option value="3">3+ Years</option>
+        <option value="4">4+ Years</option>
+        <option value="5">5+ Years</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Button -->
+<button class="submit-btn" onclick="findCars()">
+  🔍 Find My Perfect Car
+</button>
+
+<!-- Results Section -->
+<div id="results"></div>
+
+</div>
+
+<script>
+// State management
+let selectedPriority = 'balanced';
+let selectedUseCases = [];
+let selectedFeatures = {};
+let safetyRating = 0;
+
+// Priority chips
+document.querySelectorAll('.priority-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.priority-chip').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    selectedPriority = this.dataset.priority;
+  });
+});
+
+// Use case tags
+document.querySelectorAll('.usecase-tag').forEach(tag => {
+  tag.addEventListener('click', function() {
+    this.classList.toggle('active');
+    const usecase = this.dataset.usecase;
+    if (this.classList.contains('active')) {
+      if (!selectedUseCases.includes(usecase)) {
+        selectedUseCases.push(usecase);
+      }
+    } else {
+      selectedUseCases = selectedUseCases.filter(u => u !== usecase);
+    }
+  });
+});
+
+// Feature toggles
+document.querySelectorAll('.feature-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    this.classList.toggle('active');
+    const feature = this.dataset.feature;
+    selectedFeatures[feature] = this.classList.contains('active');
+  });
+});
+
+// Star rating
+document.querySelectorAll('.star').forEach(star => {
+  star.addEventListener('click', function() {
+    const rating = parseInt(this.dataset.rating);
+    safetyRating = safetyRating === rating ? 0 : rating;
+    
+    document.querySelectorAll('.star').forEach((s, index) => {
+      if (index < safetyRating) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+    
+    document.getElementById('star-label').textContent = 
+      safetyRating === 0 ? 'Any rating' : `${safetyRating}+ stars`;
+  });
+});
+
+// Main function
+async function findCars() {
+  const budgetMin = parseFloat(document.getElementById('budget_min').value);
+  const budgetMax = parseFloat(document.getElementById('budget_max').value);
+  
+  if (!budgetMin || !budgetMax || budgetMin >= budgetMax) {
+    alert('Please enter a valid budget range (min must be less than max)');
+    return;
+  }
+  
+  const payload = {
+    budget_min: budgetMin,
+    budget_max: budgetMax,
+    fuel: document.getElementById('fuel').value,
+    segment: document.getElementById('segment').value,
+    seating: parseInt(document.getElementById('seating').value),
+    city: document.getElementById('city').value,
+    transmission: document.getElementById('transmission').value,
+    brand_origin: document.getElementById('brand_origin').value,
+    priority: selectedPriority,
+    use_case: selectedUseCases,
+    min_safety_rating: safetyRating,
+    min_airbags: parseInt(document.getElementById('min_airbags').value),
+    warranty_years: parseInt(document.getElementById('warranty_years').value),
+    ...selectedFeatures
+  };
+  
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Analyzing 50 cars with 32 features...</p></div>';
+  
+  try {
+    const response = await fetch('/recommend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    const data = await response.json();
+    
+    if (data.success && data.recommendations.length > 0) {
+      renderResults(data.recommendations, data.city);
+    } else {
+      resultsDiv.innerHTML = `
+        <div class="no-results">
+          <div class="no-results-icon">🔍</div>
+          <div class="no-results-text">No cars found matching your criteria. Try adjusting your filters.</div>
+        </div>
+      `;
+    }
+  } catch (error) {
+    resultsDiv.innerHTML = `
+      <div class="no-results">
+        <div class="no-results-icon">⚠️</div>
+        <div class="no-results-text">Error: ${error.message}</div>
+      </div>
+    `;
+  }
+}
+
+function renderResults(cars, city) {
+  const resultsDiv = document.getElementById('results');
+  
+  let html = `
+    <div class="results-header">
+      <div class="results-title">Your Top ${cars.length} Matches</div>
+      <div class="results-count">📍 ${city}</div>
+    </div>
+  `;
+  
+  cars.forEach((car, index) => {
+    const isBest = index === 0;
+    const mileageDisplay = car.fuel === 'Electric' ? '⚡ EV' : `${car.mileage_kmpl} kmpl`;
+    
+    html += `
+      <div class="result-card ${isBest ? 'best' : ''}">
+        ${isBest ? '<div class="best-badge">🏆 BEST MATCH</div>' : ''}
+        
+        <div class="car-header">
+          <div>
+            <div class="car-name">${car.name}</div>
+            <div class="car-meta">
+              <span class="meta-item">🚗 ${car.segment}</span>
+              <span class="meta-item">⚡ ${car.fuel}</span>
+              <span class="meta-item">⚙️ ${car.transmission}</span>
+              <span class="meta-item">🏭 ${car.brand_origin}</span>
+            </div>
+          </div>
+          <div class="score-badge">
+            <div class="score-number">${car.score}%</div>
+            <div class="score-label">Match</div>
+          </div>
+        </div>
+        
+        <div class="car-specs">
+          <div class="spec-item">
+            <div class="spec-label">Price</div>
+            <div class="spec-value">₹${car.price_lakh}L</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Mileage</div>
+            <div class="spec-value">${mileageDisplay}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Power</div>
+            <div class="spec-value">${car.power_bhp} bhp</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Torque</div>
+            <div class="spec-value">${car.torque_nm} Nm</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Ground Clearance</div>
+            <div class="spec-value">${car.ground_clearance_mm}mm</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Seating</div>
+            <div class="spec-value">${car.seating}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Safety</div>
+            <div class="spec-value">${'⭐'.repeat(car.safety_rating)}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Airbags</div>
+            <div class="spec-value">${car.airbags}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Warranty</div>
+            <div class="spec-value">${car.warranty_years} years</div>
+          </div>
+          ${car.boot_space_l > 0 ? `
+          <div class="spec-item">
+            <div class="spec-label">Boot Space</div>
+            <div class="spec-value">${car.boot_space_l}L</div>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="feature-badges">
+          <div class="feature-badge ${car.sunroof ? 'yes' : 'no'}">
+            ${car.sunroof ? '✓' : '✗'} Sunroof
+          </div>
+          <div class="feature-badge ${car.adas ? 'yes' : 'no'}">
+            ${car.adas ? '✓' : '✗'} ADAS
+          </div>
+          <div class="feature-badge ${car.wireless_charging ? 'yes' : 'no'}">
+            ${car.wireless_charging ? '✓' : '✗'} Wireless Charging
+          </div>
+          <div class="feature-badge ${car.cruise_control ? 'yes' : 'no'}">
+            ${car.cruise_control ? '✓' : '✗'} Cruise Control
+          </div>
+          <div class="feature-badge ${car.parking_sensors ? 'yes' : 'no'}">
+            ${car.parking_sensors ? '✓' : '✗'} Parking Sensors
+          </div>
+        </div>
+        
+        ${car.highlights && car.highlights.length > 0 ? `
+        <div class="highlights">
+          ${car.highlights.map(h => `<div class="highlight">${h}</div>`).join('')}
+        </div>
+        ` : ''}
+        
+        ${car.city_note ? `
+        <div class="city-note">
+          🏙️ ${car.city_note}
+        </div>
+        ` : ''}
+      </div>
+    `;
+  });
+  
+  resultsDiv.innerHTML = html;
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+</div><!-- /.container -->
+</div><!-- /.app-main -->
+
+  <script src="/static/user_session.js"></script>
+</body>
+</html>

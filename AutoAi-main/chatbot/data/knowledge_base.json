@@ -1,0 +1,235 @@
+{
+  "greeting": [
+    "Hi! I'm your VahanSathi car assistant. Ask me anything about car maintenance, buying, fuel, insurance, tyres, safety features, or anything else car-related!",
+    "Hello! I can help you with everything from oil changes to ADAS, car buying tips to EMI calculations. What would you like to know?",
+    "Hey there! I'm here to answer all your car questions — maintenance schedules, fuel efficiency, safety ratings, insurance, and more."
+  ],
+
+  "engine_oil": [
+    "Engine oil should typically be changed every 5,000–10,000 km for mineral oil and every 10,000–15,000 km for synthetic oil. Always check your owner's manual for the exact interval for your car model. Low oil level can cause severe engine damage, so check it monthly.",
+    "For Indian driving conditions (stop-and-go traffic, dusty roads), it's recommended to change engine oil every 5,000–7,000 km even if your car is rated for longer intervals. Use the grade specified in your manual (e.g. 5W-30, 10W-40). Signs of old oil: dark black color, gritty texture, burning smell.",
+    "Engine oil lubricates all moving parts inside the engine, reduces friction, and prevents overheating. Use the correct viscosity grade (e.g., 5W-30 for modern petrol cars). Change it regularly — dirty oil leads to sludge buildup and can ruin your engine."
+  ],
+
+  "tyre_maintenance": [
+    "Check tyre pressure monthly and before long trips. Most cars require 30–35 PSI (check the sticker on your driver's door). Under-inflated tyres reduce fuel efficiency by up to 3% and cause uneven wear. Over-inflated tyres reduce grip and cause centre-tread wear.",
+    "Rotate your tyres every 8,000–10,000 km to ensure even wear across all four. Get wheel alignment checked if your car pulls to one side. Replace tyres when tread depth falls below 1.6 mm — insert a ₹1 coin; if you can see the entire coin above the tread, it's time for new tyres.",
+    "Tubeless tyres (standard on most modern cars) can be repaired if punctured, unlike tube tyres. Keep a puncture repair kit and inflator in your car. Avoid driving on a flat tyre — even a short distance can damage the rim. Check tyre age: replace any tyre older than 5–7 years regardless of tread depth."
+  ],
+
+  "car_battery": [
+    "A car battery typically lasts 3–5 years. Signs of a weak battery: slow engine cranking, dim headlights, frequent need to jump-start, battery warning light on dashboard. Have it tested every 2 years after the 3-year mark.",
+    "To extend battery life: turn off all lights and electronics before switching off the engine, avoid short trips that don't allow the battery to fully recharge, and keep the terminals clean and corrosion-free. If your car sits unused for weeks, use a battery maintainer/trickle charger.",
+    "If your car won't start, the battery is the most common culprit. A fully charged battery should read 12.6V or more. Below 12.0V it's discharged. You can jump-start using jumper cables from another car — connect red to positive (+), black to negative (–). Start the working car first, then try your car."
+  ],
+
+  "car_ac": [
+    "Car AC should be serviced annually. Signs it needs attention: weak cooling, bad smell from vents, unusual noise, or AC not cooling at all. The refrigerant (R-134a or R-1234yf) may need topping up every 2–3 years.",
+    "To make your AC more efficient: park in shade, open windows briefly before switching on AC to let hot air escape, use recirculation mode for faster cooling, and clean or replace the cabin air filter every 15,000–20,000 km.",
+    "Bad smell from AC vents is usually caused by mold/bacteria in the evaporator. You can fix this by running AC on fresh air mode with max fan speed for 5–10 minutes before turning off, or using an AC vent spray cleaner. A clogged cabin filter also causes musty odors."
+  ],
+
+  "brake_maintenance": [
+    "Brake pads should be replaced when they wear down to 2–3 mm. Signs: squealing or grinding noise when braking, longer stopping distances, vibration in the brake pedal, or the brake warning light. Most pads last 30,000–60,000 km depending on driving style.",
+    "Brake fluid absorbs moisture over time, reducing its boiling point and causing 'brake fade' under heavy use. Flush and replace brake fluid (DOT 3 or DOT 4) every 2 years or 40,000 km. Never use old or contaminated brake fluid.",
+    "Disc brakes (on most modern cars) are more effective than drum brakes. If you hear grinding, the pad has worn through to metal — replace immediately. Warped rotors cause pedal vibration; they can often be resurfaced if caught early, or need replacement."
+  ],
+
+  "fuel_efficiency": [
+    "To improve fuel efficiency: maintain correct tyre pressure, avoid aggressive acceleration and hard braking, use cruise control on highways, remove unnecessary weight from the car, and service the engine regularly. A dirty air filter alone can reduce mileage by 10–15%.",
+    "City fuel efficiency is always lower than highway because of stop-and-go traffic. The ARAI-rated mileage is measured under ideal conditions — real-world mileage is typically 15–25% lower. AC use reduces fuel efficiency by about 1–2 kmpl.",
+    "Engine idling burns fuel without moving you anywhere — a car idling for 10 minutes wastes roughly 0.5–0.8 litres of fuel. Turn off the engine if you're stationary for more than 60 seconds. Driving at 60–80 kmph is typically the most fuel-efficient speed range."
+  ],
+
+  "petrol_vs_diesel": [
+    "Petrol cars: smoother, quieter, lower upfront cost, better for city use and short trips. Diesel cars: better fuel efficiency (higher mileage), more torque for highway driving and towing, but higher purchase price and higher service costs. Diesel makes sense only if you drive 1,500+ km/month.",
+    "CNG (Compressed Natural Gas) is the cheapest fuel per km — about 40–50% less than petrol. Ideal for high-mileage urban drivers. Drawbacks: fewer CNG stations, reduced boot space for cylinder, slightly lower performance. Many cars come CNG-ready from factory now.",
+    "Electric vehicles (EVs) have zero fuel cost (just electricity charging). Home charging costs roughly ₹1–1.5 per km. EVs have fewer moving parts so maintenance is much cheaper. The main barrier is range anxiety and charging infrastructure, though it's improving rapidly in India."
+  ],
+
+  "adas": [
+    "ADAS stands for Advanced Driver Assistance Systems — a collection of safety technologies that help prevent accidents. Common ADAS features include: Automatic Emergency Braking (AEB), Lane Departure Warning (LDW), Blind Spot Detection, Adaptive Cruise Control, Forward Collision Warning, and Rear Cross Traffic Alert.",
+    "AEB (Automatic Emergency Braking) detects an imminent collision and applies brakes automatically if the driver doesn't react in time. Lane Keep Assist gently steers the car back into its lane. Adaptive Cruise Control adjusts speed to maintain safe following distance. These features significantly reduce accident risk.",
+    "ADAS cameras and sensors need to be kept clean — dirt, mud, or damage to front cameras/radar can disable these systems. Never cover or block the area near ADAS sensors. After a windshield replacement, ADAS cameras must be recalibrated by a trained technician."
+  ],
+
+  "car_insurance": [
+    "Car insurance in India is mandatory by law. Third-party insurance covers damage/injury to others and is the minimum required. Comprehensive insurance also covers your own car for accidents, theft, fire, and natural disasters. Always opt for comprehensive if your car is less than 5 years old.",
+    "Key add-ons worth buying: Zero Depreciation cover (insurer pays full part cost without depreciation deduction), Engine Protection (covers water ingress/hydrostatic lock), Roadside Assistance, Return to Invoice (pays original invoice price if car is totalled), and Consumables cover (covers oil, nuts, bolts during repairs).",
+    "NCB (No Claim Bonus) can save you 20–50% on renewal premium if you don't make a claim. You can protect your NCB by buying NCB Protect add-on. Always compare insurance online — same coverage can vary by 30–40% across providers. Renew before expiry to avoid losing NCB."
+  ],
+
+  "car_loan_emi": [
+    "Car loan EMI depends on loan amount, interest rate, and tenure. Formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P = principal, r = monthly interest rate, n = tenure in months. Banks typically offer 7–12% per annum. Shorter tenure = higher EMI but lower total interest paid.",
+    "Down payment is typically 10–20% of the car's on-road price. A higher down payment means a lower loan amount and lower EMI. Most banks fund up to 85–90% of the ex-showroom price. Processing fees are usually 0.5–1% of the loan amount.",
+    "When comparing car loans, look at the APR (Annual Percentage Rate) not just the interest rate, as APR includes all fees. Prepayment is allowed after 6–12 months (check conditions). Foreclosure charges are usually 2–5% of outstanding principal for fixed-rate loans."
+  ],
+
+  "car_buying_tips": [
+    "Before buying a car: set a realistic total budget (on-road price = ex-showroom + GST + insurance + registration + accessories). Research 3–4 models in your segment on reliability, service network, spare parts availability, and resale value. Take a long test drive (at least 30 minutes) including city roads and a highway stretch.",
+    "On-road price includes: ex-showroom price, GST (28% + cess for cars above ₹10L), registration charges (differs by state — typically 4–12% RTO tax), insurance (1st year comprehensive), and dealer charges. Always negotiate the accessories and free service packages, not just the car price.",
+    "Check the waiting period before booking — popular models can have 2–4 month waits. Verify the manufacturing date on delivery (not just the model year). Inspect the car carefully before signing delivery papers — check paint, gaps between panels, all electricals, AC, and all features listed in variant."
+  ],
+
+  "ground_clearance": [
+    "Ground clearance is the minimum distance between the bottom of the vehicle and the road. Higher ground clearance (200+ mm) helps in navigating bad roads, speed breakers, and waterlogged areas — common on Indian roads. SUVs typically have 200–220 mm, sedans have 150–170 mm.",
+    "Low ground clearance vehicles can scrape on tall speed breakers or rough terrain. If you frequently drive on broken roads or live in a flood-prone area, prioritize cars with 200+ mm clearance. Ground clearance is measured unladen — it reduces slightly when the car is fully loaded.",
+    "Raising ground clearance: aftermarket suspension lifts can help but may affect handling and void warranty. Some SUVs offer adjustable air suspension that can raise and lower the car on demand."
+  ],
+
+  "safety_ratings": [
+    "NCAP (New Car Assessment Programme) crash tests rate car safety from 1–5 stars. In India, Bharat NCAP launched in 2023. Global NCAP also tests Indian market cars. Always check crash test ratings before buying — a 5-star rated car can save your life in an accident.",
+    "Safety ratings assess: adult occupant protection (frontal, side, pole impacts), child occupant protection, and safety assist features (ADAS). A 4-5 star rated car has strong body structure, airbags, and modern safety tech. Avoid cars with 0–2 star ratings.",
+    "Airbags are passive safety features that deploy in a crash. More airbags = better protection. Minimum 2 (front) is mandatory in India from 2022. 6 airbags (front, side, curtain) provide much better protection. Some premium cars have 8–10 airbags."
+  ],
+
+  "car_insurance_claim": [
+    "Steps to file a car insurance claim: 1) Note all details at accident site (photos, other vehicle info). 2) File an FIR at police station if needed (mandatory for theft or third-party injuries). 3) Inform your insurer within 24 hours (most have 24x7 helplines). 4) Get a claim reference number. 5) Take car to insurer's network garage for cashless repairs.",
+    "For cashless claims: take your car to any of the insurer's network garages. They deal directly with the insurance company. For reimbursement claims: get repairs done anywhere, pay yourself, then submit all bills and claim documents to get reimbursed. Cashless is faster and simpler.",
+    "Reasons a claim can be rejected: driving under influence, expired licence, using personal car for commercial purpose, policy lapsed, damage doesn't match reported incident. Always be honest when filing claims and inform the insurer immediately."
+  ],
+
+  "car_maintenance_schedule": [
+    "Typical car maintenance schedule: Every 5,000 km — engine oil & filter change, tyre pressure check, visual inspection. Every 10,000 km — air filter check, cabin filter check, brake inspection. Every 20,000 km — spark plug replacement (petrol), coolant top-up. Every 40,000 km — timing belt inspection, transmission fluid, brake fluid flush.",
+    "Free service periods in India are typically at 1,000 km (first service) and 5,000/10,000 km. Never skip the first service — it's when the engine is 'broken in' and metal particles from new components are flushed out with the oil. All free services must be done at authorized service centers to maintain warranty.",
+    "Diesel cars need more frequent service than petrol cars and cost more per service. Diesel engines require DPF (Diesel Particulate Filter) cleaning periodically. Avoid short trips with diesel — the engine needs to warm up properly to regenerate the DPF."
+  ],
+
+  "ev_range": [
+    "EV range depends on battery capacity (measured in kWh), driving style, speed, AC use, and terrain. Rated range by manufacturer is under ideal conditions — real-world range is 15–25% lower. Highway driving at speed drains battery faster than city driving (unlike petrol cars).",
+    "Tips to maximize EV range: use Eco/Range mode, precondition the cabin while plugged in, maintain tyre pressure, avoid aggressive acceleration, use regenerative braking heavily, and charge to only 80% for daily use (charge to 100% only before long trips).",
+    "EV charging levels: Level 1 (home socket, 2.2 kW, very slow), Level 2 (home AC charger, 7–22 kW, overnight charge), DC Fast Charger (50–150 kW, 0–80% in 30–60 minutes). In India, Tata Power, Ather Grid, ChargeZone, and Statiq are major charging networks."
+  ],
+
+  "ev_maintenance": [
+    "EVs have far fewer moving parts than petrol/diesel cars, so maintenance is simpler and cheaper. No oil changes, no spark plugs, no timing belt. Main maintenance items: tyre rotation, brake fluid change (every 2 years), cabin air filter, and battery health check annually.",
+    "Regenerative braking in EVs slows the car using the motor, feeding energy back to the battery. This means brake pads last much longer than in conventional cars — often 80,000–100,000 km before replacement.",
+    "EV battery degradation is gradual — most batteries retain 80%+ capacity after 8–10 years. Avoid frequent DC fast charging for daily use (use AC charging at home). Keep battery between 20–80% for daily use to maximize long-term battery health."
+  ],
+
+  "document_storage": [
+    "On VahanSathi, you can securely upload and store all your vehicle documents: RC (Registration Certificate), insurance policy, PUC certificate, driving licence, pollution check receipts, and service records. Access them anytime from your dashboard.",
+    "Upload your vehicle documents once and never worry about carrying physical copies. The platform stores them digitally and you can show them to traffic police via your phone screen. Categorize documents by type for easy retrieval.",
+    "All uploaded documents are stored securely with encryption. Only you can access your documents. You can upload multiple vehicles' documents under the same account."
+  ],
+
+  "puc_certificate": [
+    "PUC (Pollution Under Control) certificate is mandatory for all vehicles in India. It certifies that your vehicle's emissions are within permissible limits. Petrol cars need PUC every 6 months (or annually if less than 1 year old); diesel cars every 3–6 months.",
+    "Getting a PUC is quick and cheap — available at authorized fuel stations and test centres. Cost is ₹60–100. Driving without a valid PUC certificate attracts a fine of ₹1,000 (first offense) under the Motor Vehicles Act 2019.",
+    "If your car fails PUC test, it usually means the engine needs a tune-up or the catalytic converter is faulty. Get the engine serviced and re-test. High CO (carbon monoxide) and HC (hydrocarbon) emissions indicate a rich fuel mixture or ignition issues."
+  ],
+
+  "challan_tracking": [
+    "Traffic challans in India are issued by traffic police for violations like speeding, signal jumping, not wearing seatbelt, using mobile phone while driving, no PUC, expired insurance, etc. You can track and view all challans linked to your vehicle in the Documents section.",
+    "Challans can be paid online at echallan.parivahan.gov.in or through Paytm, Google Pay, and similar apps. You'll need your vehicle number or challan number. Unpaid challans accumulate — they can block your RC renewal or Fastag recharge.",
+    "Motor Vehicles Act 2019 significantly increased fines: no seatbelt ₹1,000, using phone ₹5,000, drunk driving ₹10,000+, dangerous driving ₹5,000 (1st offense, imprisonment possible). Always contest wrongly issued challans within 60 days."
+  ],
+
+  "challan_reminders": [
+    "VahanSathi sends reminders for upcoming document renewals and pending challans. Set reminder alerts for insurance renewal, PUC expiry, RC renewal, and fitness certificate so you never miss a deadline.",
+    "You'll receive notifications before your insurance lapses, so you can renew on time and protect your NCB (No Claim Bonus). Timely renewals avoid legal trouble and ensure continuous coverage.",
+    "Unanswered challans can block your vehicle's RC renewal. Keep track of challans and pay them before they accumulate penalties. VahanSathi helps you stay on top of all due dates and fines."
+  ],
+
+  "ai_car_recommendation": [
+    "Use the VahanSathi AI Configurator (Car Assistant section) to get personalized car recommendations. Enter your budget (in lakhs), preferred fuel type, seating requirement, city, and priorities (mileage/performance/comfort) and the KNN-powered AI will recommend the top 3 cars for you from a database of 50 Indian cars.",
+    "The AI recommendation system analyzes 32 features including safety ratings, ADAS availability, ground clearance, mileage, brand origin, transmission type, airbags, sunroof, wireless charging, and more. It's tailored for Indian cities — city road conditions factor into the recommendation.",
+    "To get the best AI recommendations: be specific about your budget range, select your actual city (affects ground clearance and fuel recommendations), and toggle on the features you truly need. The more accurate your inputs, the better the match."
+  ],
+
+  "resale_value": [
+    "Cars with the best resale value in India: Maruti Suzuki models retain 60–70% of value after 3 years (Swift, Baleno, Brezza). Hyundai and Tata also hold value well. Luxury brands depreciate faster in percentage terms. Diesel cars have lower resale than petrol in the same segment now due to EV/petrol shift.",
+    "Factors affecting resale value: brand reputation, colour (white/silver/grey sell fastest), service history documentation, accident history, mileage, and condition. Always keep all service records — a car with full documented service history commands 10–15% higher resale price.",
+    "Selling a car: get it valued on CarDekho, Spinny, Cars24, or OLX. Multiple platforms ensure you get the best price. Consider dealer exchange offers if buying a new car — sometimes they price-match or beat open market offers for convenience."
+  ],
+
+  "coolant": [
+    "Engine coolant (antifreeze) prevents the engine from overheating and freezing. Check the coolant level in the reservoir (transparent bottle in engine bay) monthly. It should be between MIN and MAX marks. Never open the radiator cap when the engine is hot — it's pressurized and can cause severe burns.",
+    "Coolant should be flushed and replaced every 2 years or 40,000–60,000 km depending on the type (OAT coolants last longer). Mixing different coolant types or adding plain water weakens its properties. Always use the coolant type specified by your car manufacturer.",
+    "If your temperature gauge rises to the red zone, pull over safely and turn off the engine immediately. Running an overheated engine can cause a blown head gasket or warped cylinder head — repairs that cost ₹30,000–₹1,50,000+. Do not open the hood immediately — let it cool for 30 minutes."
+  ],
+
+  "spark_plugs": [
+    "Spark plugs ignite the fuel-air mixture in petrol engines. Standard copper plugs last 20,000–30,000 km; iridium/platinum plugs last 60,000–100,000 km. Signs of worn plugs: rough idling, difficulty starting, misfiring, poor mileage, loss of acceleration.",
+    "Replacing spark plugs is one of the most cost-effective maintenance items. A fresh set of iridium plugs (₹500–2,000 per plug) can restore lost mileage and improve throttle response noticeably. Always replace all plugs at the same time.",
+    "Diesel engines don't have spark plugs — they use glow plugs to pre-heat the combustion chamber during cold starts. Glow plugs typically last 100,000 km but can fail earlier. Signs: hard cold start, white smoke, rough idle when cold."
+  ],
+
+  "car_insurance_renewal": [
+    "Renew car insurance before the expiry date to maintain NCB continuity. If insurance lapses, you lose NCB, the car needs a fresh inspection before insuring, and you're uninsured (illegal to drive without insurance). Online renewal takes 5 minutes.",
+    "Compare insurance quotes on Policybazaar, Coverfox, or Acko before renewing. Don't auto-renew with your current insurer without comparing — same coverage can be 20–40% cheaper elsewhere. Port your NCB to a new insurer if switching — submit NCB certificate.",
+    "Check the IDV (Insured Declared Value) when renewing — it's the current market value of your car and the maximum you'll get in case of total loss or theft. Insurers may quote a lower IDV to reduce premium — insist on a higher IDV for adequate coverage."
+  ],
+
+  "maintenance_section": [
+    "The Maintenance & Insurance section on VahanSathi lets you log all your service records — service type, date, odometer reading, cost, and notes. This builds a full service history for your car which helps at resale time.",
+    "Log every maintenance activity: oil changes, tyre rotations, brake pad replacements, AC servicing — everything. A well-documented service log increases your car's resale credibility and helps you remember when each service is due next.",
+    "The insurance section lets you store your policy details (provider, policy number, validity dates) and upload insurance documents. Get reminders before your policy expires so you never drive uninsured."
+  ],
+
+  "platform_overview": [
+    "VahanSathi is an all-in-one vehicle management platform. It helps you store car documents, track challans and fines, set maintenance reminders, and get AI-powered car recommendations. Everything for your car, in one place.",
+    "This platform combines document management, reminder alerts, AI car buying assistance, maintenance logging, and insurance tracking — designed specifically for Indian car owners and their needs.",
+    "With VahanSathi you can: securely store RC, insurance, PUC and other documents; track and pay traffic challans; log service records; get renewal reminders; and use the AI configurator to find your perfect next car."
+  ],
+
+  "account_access": [
+    "Create an account using your email and password. Log in to access your personal dashboard with all your vehicle data safe and private.",
+    "Forgot your password? Use the 'Forgot Password' option on the login page to reset it via email. If you face any login issues, clear browser cache and try again or use a different browser.",
+    "Your account keeps all your cars' documents, challans, service records, and insurance info in one secure place. Use the same account across devices — everything syncs."
+  ],
+
+  "platform_identity": [
+    "VahanSathi is a vehicle management and AI-powered car recommendation platform built for Indian car owners. The name means 'Vehicle Companion' in Hindi.",
+    "The platform was designed to solve real problems Indian car owners face: managing scattered documents, tracking fines, remembering service dates, and making informed car buying decisions using AI.",
+    "VahanSathi combines a document vault, a service logbook, a challan tracker, and a smart car recommendation engine into one seamless experience."
+  ],
+
+  "data_security": [
+    "Your vehicle documents and personal data are stored with encryption and access controls. Only you can view your uploaded documents — not even admins can access them without authorization.",
+    "VahanSathi does not share your data with third parties. All communications between your browser and the server are encrypted via HTTPS.",
+    "Your data is backed up securely. If you delete your account, all associated data is permanently erased."
+  ],
+
+  "seating_capacity": [
+    "Seating capacity guide: Hatchbacks (5 seats), Sedans (5 seats), SUVs (5 or 7 seats), MPVs/Minivans (7–8 seats). If you regularly carry 6–7 people, look at 7-seater SUVs like MG Hector Plus, Tata Safari, Hyundai Alcazar, XUV700, or MPVs like Maruti Ertiga, Kia Carens.",
+    "For 3-row 7-seater SUVs, be aware that the 3rd row is often cramped for adults — best for children or occasional use. MPVs offer more practical 3rd-row seating. Test the 3rd row access and space before buying if this matters to you.",
+    "5-seater SUVs with 3rd row options: Some models offer 6-seater captain seats in middle row (e.g., Mahindra XUV700 6-seater). This gives more space per occupant than bench seats."
+  ],
+
+  "sunroof": [
+    "A sunroof (electric panoramic sunroof on most modern cars) adds light and airiness to the cabin. Panoramic sunroofs span a larger area. Tilting vs. sliding: tilt lets in air without full opening, slide opens partially. Panoramic sunroofs are fixed glass but let in a lot of light.",
+    "Sunroof maintenance: keep the rubber seals clean and lubricated to prevent squeaks and leaks. If the sunroof glass leaks, the drain tubes (in the frame corners) are likely clogged — clean them with compressed air. Never force-close a sunroof on debris.",
+    "Sunroofs add roughly ₹30,000–₹80,000 to the car's price. Consider whether you'll use it — in India's hot climate, many people keep it closed most of the time. If you want wind in your hair, a convertible is impractical; a sunroof is a good compromise."
+  ],
+
+  "transmission": [
+    "Manual vs Automatic: Manual (MT) transmissions give you control and are cheaper to buy and maintain. Automatic (AT) transmissions are more comfortable in city traffic. In India's congested cities, automatics are increasingly popular.",
+    "Types of automatic gearboxes: Torque Converter AT (smooth but heavier), CVT (fuel efficient, smooth but 'rubbery' feel), DCT/DSG (fast shifts, sporty, can be jerky at low speeds), AMT (cheapest automatic, slightly jerky). Choose based on driving style and budget.",
+    "AMT (Automated Manual Transmission) is not a true automatic — it's a manual gearbox with computer-controlled clutch actuation. Great for budget buyers wanting convenience, but can feel jerky in stop-and-go traffic. Very fuel-efficient since it's based on manual internals."
+  ],
+
+  "fuel_types_india": [
+    "Fuel types available in India: Regular Petrol (87 Octane), Premium Petrol (91–97 Octane — e.g., Speed, Power, Extra Premium), Diesel (BS6 now standard), CNG (at select stations), and Electric (charging stations). Premium petrol can improve performance in tuned engines but most standard cars don't benefit significantly.",
+    "BS6 fuel (Bharat Stage 6, equivalent to Euro 6) is cleaner with lower sulfur content — mandatory since April 2020. All new cars sold since 2020 are BS6 compliant. BS4 engines can run on BS6 fuel — it's better quality, not a different fuel type.",
+    "Never put diesel in a petrol car or petrol in a diesel car. Wrong fuel can damage fuel injectors, fuel pump, and catalytic converter. If done by mistake (especially petrol in diesel), do NOT start the engine — call for towing and get the fuel system flushed immediately."
+  ],
+
+  "car_washing": [
+    "Wash your car every 1–2 weeks to remove dirt, bird droppings, tree sap, and industrial fallout that can damage paint. Bird droppings are acidic — remove within 24 hours. Avoid automated car washes with brushes — they can cause micro-scratches. Touchless or hand wash is better.",
+    "Use a pH-neutral car shampoo (not dish soap — it strips wax). Use two buckets (one with soap, one for rinsing the mitt). Start from the roof and work downwards. Use a microfiber towel for drying — regular towels can scratch paint.",
+    "Apply car wax or paint sealant every 3–6 months to protect the paint and make the car easier to wash. Ceramic coating (done professionally) lasts 2–5 years and provides the best protection. Nano-ceramic coating costs ₹8,000–₹25,000 depending on car size and coating quality."
+  ],
+
+  "thanks": [
+    "You're welcome! Feel free to ask me anything else about your car.",
+    "Happy to help! Ask away if you have more car questions.",
+    "Glad I could help! No question is too small — I'm here anytime."
+  ],
+
+  "fallback": [
+    "That's a great question! I specialize in car maintenance, fuel, insurance, buying tips, safety features, and everything about the VahanSathi platform. Could you rephrase or ask something in that area? I'll do my best to help.",
+    "I may not have a specific answer for that, but I can help you with topics like engine maintenance, tyre care, car insurance, ADAS features, EV queries, fuel efficiency, car buying advice, and more. What would you like to know?",
+    "I'm still learning! For that specific query I'd suggest checking your car's owner manual or visiting an authorized service center. For general car questions, I'm all yours — just ask!"
+  ]
+}

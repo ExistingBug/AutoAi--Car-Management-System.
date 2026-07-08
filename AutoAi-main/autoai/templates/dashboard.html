@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VahanSathi – Dashboard</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/theme.css"/>
+  <script src="/static/theme.js"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --sky: #EAF4FB;
+      --blue: #3A8DCA;
+      --blue-dark: #2670A8;
+      --blue-light: #5BACD6;
+      --blue-pale: #C8E4F5;
+      --amber: #F5A623;
+      --amber-glow: #FAC05E;
+      --white: #FFFFFF;
+      --text: #1A2533;
+      --text-mid: #5A6A7A;
+      --text-soft: #9AAABB;
+      --border: #D8EAF6;
+      --bg: #F0F7FE;
+      --green: #34A853;
+      --green-pale: #E6F5EC;
+      --red: #E85555;
+      --red-pale: #FFECEC;
+      --sidebar-w: 248px;
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: #fff;
+      border-right: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 20
+    }
+
+    .sb-brand {
+      padding: 24px 20px 20px;
+      border-bottom: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sb-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 3px 10px rgba(58, 141, 202, 0.3)
+    }
+
+    .sb-logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      color: var(--text);
+      letter-spacing: -0.3px
+    }
+
+    .sb-nav {
+      flex: 1;
+      padding: 16px 0;
+      overflow-y: auto
+    }
+
+    .sb-section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      padding: 14px 22px 5px
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+      margin: 1px 8px;
+      border-radius: 0 8px 8px 0
+    }
+
+    .nav-item .nav-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      transition: all 0.15s
+    }
+
+    .nav-item:hover {
+      color: var(--blue);
+      background: var(--sky)
+    }
+
+    .nav-item:hover .nav-icon {
+      background: var(--blue-pale)
+    }
+
+    .nav-item.active {
+      color: var(--blue);
+      background: linear-gradient(90deg, var(--sky), #fff);
+      border-left-color: var(--blue);
+      font-weight: 600
+    }
+
+    .nav-item.active .nav-icon {
+      background: var(--blue-pale)
+    }
+
+    .sb-footer {
+      padding: 16px 20px;
+      border-top: 1.5px solid var(--border)
+    }
+
+    .sb-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px
+    }
+
+    .sb-avatar {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-glow));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #fff;
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .sb-user-info .sb-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .sb-user-info .sb-role {
+      font-size: 11px;
+      color: var(--text-soft)
+    }
+
+    .sb-signout {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-soft);
+      cursor: pointer;
+      padding: 7px 10px;
+      border-radius: 8px;
+      transition: all 0.15s
+    }
+
+    .sb-signout:hover {
+      color: #C94040;
+      background: #fff0f0
+    }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column
+    }
+
+    .topbar {
+      background: #fff;
+      border-bottom: 1.5px solid var(--border);
+      padding: 0 36px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10
+    }
+
+    .topbar-breadcrumb {
+      font-size: 12px;
+      color: var(--text-soft)
+    }
+
+    .topbar-breadcrumb span {
+      color: var(--text-mid)
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .topbar-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--green-pale);
+      color: var(--green);
+      padding: 3px 10px;
+      border-radius: 20px
+    }
+
+    .topbar-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.15s
+    }
+
+    .topbar-btn:hover {
+      background: var(--sky);
+      border-color: var(--blue-pale)
+    }
+
+    .content {
+      padding: 28px 36px 48px;
+      flex: 1
+    }
+
+    /* ── HERO WELCOME ── */
+    .hero-banner {
+      background: linear-gradient(120deg, #1A4D7A 0%, var(--blue) 55%, var(--blue-light) 100%);
+      border-radius: 20px;
+      padding: 42px 44px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* floating car silhouette */
+    .hero-car {
+      position: absolute;
+      right: -10px;
+      bottom: -14px;
+      font-size: 160px;
+      opacity: 0.07;
+      line-height: 1;
+      transform: scaleX(-1);
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 620px
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(245, 166, 35, 0.2);
+      border: 1px solid rgba(245, 166, 35, 0.4);
+      color: var(--amber-glow);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero-h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px
+    }
+
+    .hero-h1 em {
+      color: var(--amber-glow);
+      font-style: normal
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.72;
+      margin-bottom: 30px;
+      max-width: 500px
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .hero-cta.primary {
+      background: #fff;
+      color: var(--blue);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15)
+    }
+
+    .hero-cta.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2)
+    }
+
+    .hero-cta.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.25)
+    }
+
+    .hero-cta.secondary:hover {
+      background: rgba(255, 255, 255, 0.2)
+    }
+
+    /* ── PLATFORM STATS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px
+    }
+
+    .stat-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.22s;
+      cursor: default;
+    }
+
+    .stat-card:hover {
+      border-color: var(--blue-pale);
+      box-shadow: 0 6px 24px rgba(58, 141, 202, 0.1);
+      transform: translateY(-2px)
+    }
+
+    .stat-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px
+    }
+
+    .stat-icon.blue {
+      background: var(--sky)
+    }
+
+    .stat-icon.amber {
+      background: #FFF7E6
+    }
+
+    .stat-icon.green {
+      background: var(--green-pale)
+    }
+
+    .stat-icon.purple {
+      background: #F3F0FF
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 3px
+    }
+
+    .stat-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      font-family: 'DM Serif Display', serif
+    }
+
+    .stat-sub {
+      font-size: 11.5px;
+      color: var(--text-soft);
+      margin-top: 1px
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-heading {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 20px
+    }
+
+    /* ── FEATURE CARDS ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--blue-pale);
+      box-shadow: 0 12px 40px rgba(58, 141, 202, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1
+    }
+
+    .feature-card.amber-accent::before {
+      background: linear-gradient(90deg, var(--amber), var(--amber-glow))
+    }
+
+    .feature-card.green-accent::before {
+      background: linear-gradient(90deg, var(--green), #5CE08A)
+    }
+
+    .feature-card.purple-accent::before {
+      background: linear-gradient(90deg, #7C3AED, #A78BFA)
+    }
+
+    .fc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 18px
+    }
+
+    .fc-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px
+    }
+
+    .fc-icon-wrap.blue-bg {
+      background: var(--sky)
+    }
+
+    .fc-icon-wrap.amber-bg {
+      background: #FFF7E6
+    }
+
+    .fc-icon-wrap.green-bg {
+      background: var(--green-pale)
+    }
+
+    .fc-icon-wrap.purple-bg {
+      background: #F3F0FF
+    }
+
+    .fc-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px
+    }
+
+    .fc-badge.blue {
+      background: var(--blue-pale);
+      color: var(--blue-dark)
+    }
+
+    .fc-badge.amber {
+      background: #FFF0CC;
+      color: #A06000
+    }
+
+    .fc-badge.green {
+      background: var(--green-pale);
+      color: #1E6E3A
+    }
+
+    .fc-badge.purple {
+      background: #EDE9FE;
+      color: #5B21B6
+    }
+
+    .fc-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px
+    }
+
+    .fc-desc {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 22px
+    }
+
+    .fc-bullets {
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px
+    }
+
+    .fc-bullet {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12.5px;
+      color: var(--text-mid)
+    }
+
+    .fc-bullet::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-pale);
+      flex-shrink: 0
+    }
+
+    .feature-card.amber-accent .fc-bullet::before {
+      background: var(--amber-glow)
+    }
+
+    .feature-card.green-accent .fc-bullet::before {
+      background: #6EE78A
+    }
+
+    .feature-card.purple-accent .fc-bullet::before {
+      background: #A78BFA
+    }
+
+    .fc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.2s;
+    }
+
+    .fc-cta.blue {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(58, 141, 202, 0.3)
+    }
+
+    .fc-cta.blue:hover {
+      background: var(--blue-dark);
+      transform: translateX(2px);
+      box-shadow: 0 5px 16px rgba(58, 141, 202, 0.4)
+    }
+
+    .fc-cta.amber {
+      background: var(--amber);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(245, 166, 35, 0.3)
+    }
+
+    .fc-cta.amber:hover {
+      background: #D48A0F;
+      transform: translateX(2px)
+    }
+
+    .fc-cta.green {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(52, 168, 83, 0.3)
+    }
+
+    .fc-cta.green:hover {
+      background: #2A8540;
+      transform: translateX(2px)
+    }
+
+    .fc-cta.purple {
+      background: #7C3AED;
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3)
+    }
+
+    .fc-cta.purple:hover {
+      background: #6025C7;
+      transform: translateX(2px)
+    }
+
+    .cta-arrow {
+      transition: transform 0.2s
+    }
+
+    .fc-cta:hover .cta-arrow {
+      transform: translateX(3px)
+    }
+
+    /* ── QUICK ACCESS ROW ── */
+    .quick-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 32px
+    }
+
+    .quick-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-card:hover {
+      border-color: var(--blue-pale);
+      box-shadow: 0 6px 20px rgba(58, 141, 202, 0.1);
+      transform: translateY(-2px)
+    }
+
+    .qc-icon {
+      font-size: 26px
+    }
+
+    .qc-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .qc-sub {
+      font-size: 11px;
+      color: var(--text-soft)
+    }
+
+    /* ── TIPS BANNER ── */
+    .tips-banner {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .tips-icon {
+      font-size: 36px;
+      flex-shrink: 0
+    }
+
+    .tips-content {}
+
+    .tips-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px
+    }
+
+    .tips-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6
+    }
+
+    .tips-text strong {
+      color: var(--blue)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+        <rect width="34" height="34" rx="9" fill="url(#dg1)"/>
+        <path d="M7 21.5l2.5-6.5h15l2.5 6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+        <rect x="7" y="21.5" width="20" height="4" rx="2" fill="#fff" fill-opacity="0.9"/>
+        <circle cx="11" cy="25.5" r="2" fill="#F5A623"/>
+        <circle cx="23" cy="25.5" r="2" fill="#F5A623"/>
+        <path d="M9.5 15l2-5h11l2 5" fill="#fff" fill-opacity="0.45"/>
+        <defs><linearGradient id="dg1" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#2670A8"/><stop offset="1" stop-color="#5BACD6"/></linearGradient></defs>
+      </svg>
+      <span class="sb-logo-text">VahanSathi</span>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-section-label">Main Menu</div>
+      <a class="nav-item active" href="/dashboard">
+        <div class="nav-icon">🏠</div>Dashboard
+      </a>
+      <a class="nav-item" href="/carsearch">
+        <div class="nav-icon">🔍</div>Car Search
+      </a>
+      <a class="nav-item" href="/documents">
+        <div class="nav-icon">📁</div>Documents &amp; Reminders
+      </a>
+      <a class="nav-item" href="/maintenance">
+        <div class="nav-icon">🔧</div>Maintenance &amp; Insurance
+      </a>
+      <a class="nav-item" href="/chat">
+        <div class="nav-icon">💬</div>Car Assistant AI
+      </a>
+      <a class="nav-item" href="/faq">
+        <div class="nav-icon">🤖</div>FAQ Chatbot
+      </a>
+      <div class="sb-section-label">Account</div>
+      <a class="nav-item" href="/settings">
+        <div class="nav-icon">⚙️</div>Settings
+      </a>
+    </nav>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar">J</div>
+        <div class="sb-user-info">
+          <div class="sb-name">Jane Doe</div>
+          <div class="sb-role">My Garage · 1 Vehicle</div>
+        </div>
+      </div>
+      <div class="sb-signout" onclick="doLogout()"><span>⬅</span> Sign out</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">VahanSathi <span>/ Dashboard</span></div>
+      <div class="topbar-right">
+        <span class="topbar-badge">✦ Welcome</span>
+        <div class="topbar-btn">🔔</div>
+        <div class="topbar-btn">❓</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- HERO WELCOME -->
+      <div class="hero-banner">
+        <div class="hero-car">🚗</div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">✦ Your Vehicle Command Centre</div>
+          <h1 class="hero-h1">Welcome to <em>VahanSathi</em>, Jane 👋</h1>
+          <p class="hero-desc">
+            Your intelligent vehicle management platform. Store documents, log service history, track challans,
+            manage insurance, and get AI-powered car recommendations — all in one place.
+          </p>
+          <div class="hero-cta-row">
+            <a href="/documents" class="hero-cta primary">📁 My Documents →</a>
+            <a href="/chat" class="hero-cta secondary">💬 AI Car Configurator</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS ROW -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon blue">🚗</div>
+          <div>
+            <div class="stat-label">Cars in AI DB</div>
+            <div class="stat-val">90+</div>
+            <div class="stat-sub">Analysed by KNN</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">📊</div>
+          <div>
+            <div class="stat-label">Features Tracked</div>
+            <div class="stat-val">32</div>
+            <div class="stat-sub">Per car profile</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">🏙️</div>
+          <div>
+            <div class="stat-label">Indian Cities</div>
+            <div class="stat-val">13</div>
+            <div class="stat-sub">Road-condition aware</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">🤖</div>
+          <div>
+            <div class="stat-label">AI Intents</div>
+            <div class="stat-val">38</div>
+            <div class="stat-sub">FAQ topics covered</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION HEADING -->
+      <div class="section-heading">Explore the Platform</div>
+      <div class="section-sub">Here's everything VahanSathi offers — click any section to get started</div>
+
+      <!-- FEATURE CARDS -->
+      <div class="features-grid">
+
+        <!-- Documents -->
+        <a href="/documents" class="feature-card" style="cursor:pointer">
+          <div class="fc-top">
+            <div class="fc-icon-wrap blue-bg">📁</div>
+            <span class="fc-badge blue">Documents</span>
+          </div>
+          <div class="fc-title">Documents &amp; Reminders</div>
+          <div class="fc-desc">Your secure digital vault for every vehicle document. Upload once, access anytime — even
+            show them to traffic police on your phone.</div>
+          <div class="fc-bullets">
+            <div class="fc-bullet">Upload RC, Insurance, PUC, Driving Licence</div>
+            <div class="fc-bullet">Set reminders for renewals &amp; deadlines</div>
+            <div class="fc-bullet">Registration &amp; licence document storage</div>
+          </div>
+          <span class="fc-cta blue">Go to Documents <span class="cta-arrow">→</span></span>
+        </a>
+
+        <!-- Maintenance -->
+        <a href="/maintenance" class="feature-card amber-accent" style="cursor:pointer">
+          <div class="fc-top">
+            <div class="fc-icon-wrap amber-bg">🔧</div>
+            <span class="fc-badge amber">Maintenance</span>
+          </div>
+          <div class="fc-title">Maintenance &amp; Insurance</div>
+          <div class="fc-desc">Log every service your car gets and store your insurance policy details. Build a complete
+            service history that boosts resale value.</div>
+          <div class="fc-bullets">
+            <div class="fc-bullet">Log oil changes, tyre rotations, full services</div>
+            <div class="fc-bullet">Store insurance provider &amp; policy number</div>
+            <div class="fc-bullet">Upload insurance documents securely</div>
+          </div>
+          <span class="fc-cta amber">Go to Maintenance <span class="cta-arrow">→</span></span>
+        </a>
+
+        <!-- AI Configurator -->
+        <a href="/chat" class="feature-card green-accent" style="cursor:pointer">
+          <div class="fc-top">
+            <div class="fc-icon-wrap green-bg">💬</div>
+            <span class="fc-badge green">AI Powered</span>
+          </div>
+          <div class="fc-title">Car Assistant AI</div>
+          <div class="fc-desc">Enter your budget, city, fuel preference, and desired features. Our KNN machine learning
+            model recommends the perfect car from 50 Indian cars.</div>
+          <div class="fc-bullets">
+            <div class="fc-bullet">Budget from ₹5L to ₹80L+ across all segments</div>
+            <div class="fc-bullet">Accounts for safety ratings, ADAS, ground clearance</div>
+            <div class="fc-bullet">Tailored to your city's road conditions</div>
+          </div>
+          <span class="fc-cta green">Try Car Configurator <span class="cta-arrow">→</span></span>
+        </a>
+
+        <!-- FAQ Chatbot -->
+        <a href="/faq" class="feature-card purple-accent" style="cursor:pointer">
+          <div class="fc-top">
+            <div class="fc-icon-wrap purple-bg">🤖</div>
+            <span class="fc-badge purple">FAQ Bot</span>
+          </div>
+          <div class="fc-title">FAQ Chatbot</div>
+          <div class="fc-desc">Ask anything about your car in plain English. Covers 38 topics — engine oil intervals,
+            tyre pressure, insurance claims, EV range, ADAS, EMI, and more.</div>
+          <div class="fc-bullets">
+            <div class="fc-bullet">Engine, tyres, battery, brakes, AC &amp; spark plugs</div>
+            <div class="fc-bullet">Car buying tips, EMI, resale &amp; insurance claims</div>
+            <div class="fc-bullet">EV, ADAS, fuel types &amp; transmission explained</div>
+          </div>
+          <span class="fc-cta purple">Chat with Assistant <span class="cta-arrow">→</span></span>
+        </a>
+
+      </div>
+
+      <!-- QUICK ACCESS -->
+      <div class="section-heading">Quick Access</div>
+      <div class="section-sub" style="margin-bottom:16px">Jump directly to common tasks</div>
+      <div class="quick-row" style="margin-bottom:28px">
+        <a class="quick-card" href="/documents">
+          <div class="qc-icon">📄</div>
+          <div class="qc-label">Upload Document</div>
+          <div class="qc-sub">Add RC, PUC, insurance</div>
+        </a>
+        <a class="quick-card" href="/maintenance">
+          <div class="qc-icon">🔧</div>
+          <div class="qc-label">Log a Service</div>
+          <div class="qc-sub">Record oil change etc.</div>
+        </a>
+        <a class="quick-card" href="/chat">
+          <div class="qc-icon">🚗</div>
+          <div class="qc-label">Find My Car</div>
+          <div class="qc-sub">AI recommendation</div>
+        </a>
+        <a class="quick-card" href="/faq">
+          <div class="qc-icon">💡</div>
+          <div class="qc-label">Ask a Question</div>
+          <div class="qc-sub">FAQ chatbot</div>
+        </a>
+      </div>
+
+      <!-- TIP BANNER -->
+      <div class="tips-banner">
+        <div class="tips-icon">💡</div>
+        <div class="tips-content">
+          <div class="tips-title">Pro Tip — Start with Documents</div>
+          <div class="tips-text">
+            Upload your <strong>RC, Insurance &amp; PUC</strong> first so you always have them handy on your phone.
+            Then set reminders for their renewal dates — VahanSathi will alert you before they expire.
+            Use the <strong>Car Assistant AI</strong> before your next car purchase for data-backed recommendations.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <script>
+    // Personalise greeting by time of day
+    (function () {
+      const h = new Date().getHours();
+      const g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+      const el = document.querySelector('.hero-h1');
+      if (el) el.innerHTML = el.innerHTML.replace('Welcome to', g + '! Welcome to');
+    })();
+
+    // Add Car Modal
+    function openCarModal() { document.getElementById('car-modal-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeCarModal(e) { if(e && e.target!==document.getElementById('car-modal-overlay'))return; document.getElementById('car-modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+    function showCarMsg(text,type) { var el=document.getElementById('car-modal-msg'); el.textContent=text; el.className='modal-msg '+type; }
+    function previewCarImage(input) { if(!input.files||!input.files[0])return; var reader=new FileReader(); reader.onload=function(ev){document.getElementById('car-img-preview').innerHTML='<img src="'+ev.target.result+'" alt="car"/>';}; reader.readAsDataURL(input.files[0]); }
+    function saveCar() {
+      var brand=document.getElementById('car-brand').value.trim();
+      var model=document.getElementById('car-model').value.trim();
+      var year=document.getElementById('car-year').value.trim();
+      var fuel=document.getElementById('car-fuel').value;
+      var reg=document.getElementById('car-reg').value.trim().toUpperCase();
+      if(!brand){showCarMsg('Please enter the car brand.','err');return;}
+      if(!model){showCarMsg('Please enter the car model.','err');return;}
+      if(!year){showCarMsg('Please enter the manufacturing year.','err');return;}
+      if(!fuel){showCarMsg('Please select a fuel type.','err');return;}
+      if(!reg){showCarMsg('Please enter the registration number.','err');return;}
+      showCarMsg('Car saved: '+brand+' '+model+' ('+year+')','ok');
+      setTimeout(function(){
+        closeCarModal(null);
+        document.getElementById('car-modal-msg').className='modal-msg';
+        ['car-brand','car-model','car-year','car-fuel','car-reg','car-mileage','car-purchase'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+        document.getElementById('car-img-preview').innerHTML='<span class="car-img-placeholder">&#128663;</span>';
+      },1400);
+    }
+  </script>
+
+  <!-- ADD CAR FAB -->
+  <button class="add-car-fab" onclick="openCarModal()" title="Add a new car">&#128663; <span>Add My Car</span></button>
+
+  <!-- ADD CAR MODAL -->
+  <div class="modal-overlay" id="car-modal-overlay" onclick="closeCarModal(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <div class="modal-icon">&#128663;</div>
+          <div><div class="modal-title">Add Your Car</div><div class="modal-sub">Fill in your vehicle details</div></div>
+        </div>
+        <button class="modal-close" onclick="closeCarModal(null)">&#10005;</button>
+      </div>
+      <div class="modal-body">
+        <div class="car-img-upload">
+          <div class="car-img-preview" id="car-img-preview"><span class="car-img-placeholder">&#128663;</span></div>
+          <div>
+            <label for="car-image-input" class="car-img-btn">&#128247; Upload Car Photo</label>
+            <input type="file" id="car-image-input" accept="image/*" onchange="previewCarImage(this)" style="display:none"/>
+            <div class="car-img-hint">Optional &middot; JPG or PNG</div>
+          </div>
+        </div>
+        <div class="modal-field-row">
+          <div class="modal-field"><label>Brand *</label><input type="text" id="car-brand" placeholder="e.g. Maruti, Tata"/></div>
+          <div class="modal-field"><label>Model *</label><input type="text" id="car-model" placeholder="e.g. Swift, Nexon"/></div>
+        </div>
+        <div class="modal-field-row">
+          <div class="modal-field"><label>Year *</label><input type="number" id="car-year" placeholder="e.g. 2022" min="1990" max="2026"/></div>
+          <div class="modal-field">
+            <label>Fuel Type *</label>
+            <select id="car-fuel">
+              <option value="">Select fuel type</option>
+              <option>Petrol</option><option>Diesel</option><option>CNG</option><option>Electric</option><option>Hybrid</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-field"><label>Registration Number *</label><input type="text" id="car-reg" placeholder="e.g. MH 01 AB 1234" style="text-transform:uppercase"/></div>
+        <div class="modal-field-row">
+          <div class="modal-field"><label>Current Mileage (km)</label><input type="number" id="car-mileage" placeholder="e.g. 25000"/></div>
+          <div class="modal-field"><label>Purchase Date</label><input type="date" id="car-purchase"/></div>
+        </div>
+        <div class="modal-msg" id="car-modal-msg"></div>
+        <div class="modal-actions">
+          <button class="modal-cancel" onclick="closeCarModal(null)">Cancel</button>
+          <button class="modal-save" onclick="saveCar()">&#128663; Save Car</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+  .add-car-fab{position:fixed;bottom:32px;right:32px;display:flex;align-items:center;gap:8px;padding:13px 22px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(58,141,202,0.45);transition:all 0.25s;z-index:50}
+  .add-car-fab:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(58,141,202,0.55)}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,30,50,0.5);backdrop-filter:blur(4px);z-index:100;align-items:center;justify-content:center}
+  .modal-overlay.open{display:flex}
+  .modal-box{background:#fff;border-radius:20px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.2);animation:slideUp 0.25s ease}
+  @keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal-header{display:flex;align-items:center;justify-content:space-between;padding:24px 28px 20px;border-bottom:1.5px solid var(--border)}
+  .modal-title-row{display:flex;align-items:center;gap:14px}
+  .modal-icon{width:46px;height:46px;background:var(--sky);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .modal-title{font-size:17px;font-weight:700;color:var(--text)}.modal-sub{font-size:12px;color:var(--text-soft);margin-top:2px}
+  .modal-close{width:32px;height:32px;border-radius:8px;background:var(--bg);border:1.5px solid var(--border);font-size:14px;cursor:pointer;color:var(--text-soft);display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+  .modal-close:hover{color:#C94040;background:#fff0f0;border-color:#ffcdd2}
+  .modal-body{padding:24px 28px 28px}
+  .car-img-upload{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:16px;background:var(--bg);border-radius:12px;border:1.5px solid var(--border)}
+  .car-img-preview{width:64px;height:64px;border-radius:10px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+  .car-img-preview img{width:100%;height:100%;object-fit:cover}.car-img-placeholder{font-size:30px}
+  .car-img-btn{display:inline-block;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid var(--blue-pale);border-radius:8px;cursor:pointer;transition:all 0.2s}
+  .car-img-btn:hover{background:var(--sky)}.car-img-hint{font-size:11px;color:var(--text-soft);margin-top:4px}
+  .modal-field{margin-bottom:14px;flex:1}
+  .modal-field label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px}
+  .modal-field input,.modal-field select{width:100%;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:9px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none}
+  .modal-field input:focus,.modal-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,141,202,0.1);background:#fff}
+  .modal-field-row{display:flex;gap:12px}
+  .modal-msg{font-size:12.5px;padding:9px 13px;border-radius:8px;display:none;margin-bottom:14px}
+  .modal-msg.err{display:block;background:#fff0f0;color:#c94040;border:1px solid #ffcdd2}
+  .modal-msg.ok{display:block;background:#eaf8ee;color:#2e8b57;border:1px solid #b2dfdb}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+  .modal-cancel{padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--text-mid);background:var(--bg);border:1.5px solid var(--border);border-radius:9px;cursor:pointer;transition:all 0.15s}
+  .modal-cancel:hover{background:#f0f0f0}
+  .modal-save{padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-dark));border:none;border-radius:9px;cursor:pointer;box-shadow:0 4px 14px rgba(58,141,202,0.3);transition:all 0.2s}
+  .modal-save:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(58,141,202,0.4)}
+  </style>
+
+  <script src="/static/user_session.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "v-front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently --names \"VITE,FLASK\" --prefix-colors \"cyan,magenta\" \"npm run dev:vite\" \"npm run dev:flask\"",
+    "dev:vite": "vite",
+    "dev:flask": "powershell -Command \"$env:PYTHONUTF8=1; Set-Location 'd:\\Ameya\\merged_Autoai\\Car-Dashboard\\autoai'; python app.py\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "concurrently": "^9.2.1",
+    "vite": "^5.0.0"
+  }
+}

@@ -1,0 +1,449 @@
+text,intent
+hello,greeting
+hi,greeting
+hey,greeting
+good morning,greeting
+good evening,greeting
+good afternoon,greeting
+what's up,greeting
+how are you,greeting
+hi there,greeting
+howdy,greeting
+hey there,greeting
+greetings,greeting
+
+when should i change engine oil,engine_oil
+how often to change oil,engine_oil
+engine oil change interval,engine_oil
+oil change frequency,engine_oil
+how many km for oil change,engine_oil
+what oil to use,engine_oil
+best engine oil for car,engine_oil
+synthetic vs mineral oil,engine_oil
+how to check engine oil,engine_oil
+low engine oil warning,engine_oil
+oil level how to check,engine_oil
+engine oil grade,engine_oil
+5w30 vs 10w40,engine_oil
+can i use any engine oil,engine_oil
+oil change cost,engine_oil
+oil warning light,engine_oil
+black oil normal,engine_oil
+oil flush needed,engine_oil
+engine oil smell,engine_oil
+
+tyre pressure,tyre_maintenance
+how to check tyre pressure,tyre_maintenance
+tyre rotation when,tyre_maintenance
+tyre alignment,tyre_maintenance
+when to replace tyres,tyre_maintenance
+tread depth tyres,tyre_maintenance
+tubeless tyre puncture,tyre_maintenance
+tyre wear uneven,tyre_maintenance
+how to fix puncture,tyre_maintenance
+best tyre brand india,tyre_maintenance
+tyre psi,tyre_maintenance
+low tyre pressure effects,tyre_maintenance
+wheel balancing needed,tyre_maintenance
+front and rear tyre swap,tyre_maintenance
+tyre age how old,tyre_maintenance
+tyre cracking sidewall,tyre_maintenance
+nitrogen vs air in tyres,tyre_maintenance
+spare tyre maintenance,tyre_maintenance
+run flat tyres,tyre_maintenance
+tyre noise while driving,tyre_maintenance
+
+car battery,car_battery
+battery life how long,car_battery
+car not starting battery,car_battery
+how to jump start car,car_battery
+battery dead what to do,car_battery
+battery terminal corrosion,car_battery
+weak battery symptoms,car_battery
+how often replace battery,car_battery
+battery draining fast,car_battery
+battery warning light,car_battery
+how to check battery voltage,car_battery
+car battery cost,car_battery
+which battery brand,car_battery
+amaron vs exide battery,car_battery
+battery trickle charger,car_battery
+battery terminal cleaning,car_battery
+
+car ac not cooling,car_ac
+ac service how often,car_ac
+ac gas refill,car_ac
+ac refrigerant,car_ac
+bad smell from ac,car_ac
+ac not working,car_ac
+ac compressor noise,car_ac
+cabin air filter change,car_ac
+ac filter replacement,car_ac
+ac uses more fuel,car_ac
+car ac tips,car_ac
+how to cool car faster,car_ac
+ac blowing warm air,car_ac
+ac leak car,car_ac
+car ac maintenance,car_ac
+
+brake noise squeal,brake_maintenance
+brake pad replacement,brake_maintenance
+when to change brakes,brake_maintenance
+brake fluid change,brake_maintenance
+grinding noise braking,brake_maintenance
+brake pedal goes down,brake_maintenance
+brake warning light,brake_maintenance
+disc brake vs drum brake,brake_maintenance
+brake rotor warped,brake_maintenance
+how long do brakes last,brake_maintenance
+brake pad cost,brake_maintenance
+brake fluid type,brake_maintenance
+spongy brake pedal,brake_maintenance
+emergency brake use,brake_maintenance
+how to check brake pads,brake_maintenance
+
+fuel efficiency improve,fuel_efficiency
+how to improve mileage,fuel_efficiency
+reduce petrol consumption,fuel_efficiency
+why is mileage low,fuel_efficiency
+mileage dropped suddenly,fuel_efficiency
+arai vs real world mileage,fuel_efficiency
+ac effect on mileage,fuel_efficiency
+speed for best fuel economy,fuel_efficiency
+fuel saving tips,fuel_efficiency
+city vs highway mileage,fuel_efficiency
+idle fuel consumption,fuel_efficiency
+driving style fuel efficiency,fuel_efficiency
+best speed for mileage,fuel_efficiency
+economy mode car,fuel_efficiency
+
+petrol vs diesel car,petrol_vs_diesel
+should i buy diesel or petrol,petrol_vs_diesel
+cng car benefits,petrol_vs_diesel
+cng vs petrol car,petrol_vs_diesel
+electric vs petrol car,petrol_vs_diesel
+diesel car worth it,petrol_vs_diesel
+cng mileage,petrol_vs_diesel
+diesel mileage,petrol_vs_diesel
+petrol car maintenance,petrol_vs_diesel
+diesel car problems,petrol_vs_diesel
+electric vehicle advantages,petrol_vs_diesel
+fuel type which is better,petrol_vs_diesel
+cng car pros cons,petrol_vs_diesel
+diesel car ban india,petrol_vs_diesel
+hybrid car india,petrol_vs_diesel
+
+what is adas,adas
+adas features explained,adas
+automatic emergency braking,adas
+lane departure warning,adas
+blind spot detection,adas
+adaptive cruise control explained,adas
+forward collision warning,adas
+adas worth buying,adas
+how does adas work,adas
+adas camera cleaning,adas
+adas system malfunction,adas
+which cars have adas india,adas
+adas after windshield replacement,adas
+lane keep assist explained,adas
+rear cross traffic alert,adas
+driver drowsiness detection,adas
+parking assist car,adas
+automatic parking car,adas
+360 degree camera car,adas
+
+car insurance what to buy,car_insurance
+comprehensive vs third party insurance,car_insurance
+zero depreciation insurance,car_insurance
+insurance add ons,car_insurance
+ncb no claim bonus,car_insurance
+best car insurance india,car_insurance
+car insurance renewal,car_insurance
+car insurance cost,car_insurance
+engine protection insurance,car_insurance
+roadside assistance insurance,car_insurance
+return to invoice insurance,car_insurance
+insurance for old car,car_insurance
+how to compare car insurance,car_insurance
+insurance for new car,car_insurance
+car insurance what is idv,car_insurance
+comprehensive insurance benefits,car_insurance
+
+car loan emi calculate,car_loan_emi
+how much loan can i get,car_loan_emi
+car loan interest rate,car_loan_emi
+down payment car,car_loan_emi
+car loan tenure,car_loan_emi
+car loan processing fee,car_loan_emi
+prepay car loan,car_loan_emi
+car loan foreclosure,car_loan_emi
+best bank for car loan,car_loan_emi
+car loan eligibility,car_loan_emi
+how much down payment for car,car_loan_emi
+emi for 10 lakh car,car_loan_emi
+car loan documents needed,car_loan_emi
+
+tips for buying a car,car_buying_tips
+how to negotiate car price,car_buying_tips
+on road price breakdown,car_buying_tips
+what is ex showroom price,car_buying_tips
+gst on cars,car_buying_tips
+rto registration charges,car_buying_tips
+things to check before buying car,car_buying_tips
+test drive tips,car_buying_tips
+car waiting period,car_buying_tips
+how to inspect new car delivery,car_buying_tips
+first time car buyer tips,car_buying_tips
+used car buying tips,car_buying_tips
+dealer charges avoid,car_buying_tips
+extended warranty worth it,car_buying_tips
+accessories from dealer,car_buying_tips
+certified pre-owned car,car_buying_tips
+
+ground clearance meaning,ground_clearance
+which car has highest ground clearance,ground_clearance
+ground clearance for bad roads,ground_clearance
+suv ground clearance,ground_clearance
+sedan ground clearance india,ground_clearance
+how important is ground clearance,ground_clearance
+ground clearance for speed breakers,ground_clearance
+ground clearance for waterlogged roads,ground_clearance
+ground clearance mm recommended,ground_clearance
+
+ncap rating explained,safety_ratings
+car crash test rating,safety_ratings
+5 star safety rating cars india,safety_ratings
+how many airbags should a car have,safety_ratings
+bharat ncap explained,safety_ratings
+global ncap india cars,safety_ratings
+what does airbag do,safety_ratings
+mandatory safety features india,safety_ratings
+seatbelt importance,safety_ratings
+which car is safest in india,safety_ratings
+child safety rating car,safety_ratings
+rollover protection car,safety_ratings
+
+insurance claim process,car_insurance_claim
+how to file car insurance claim,car_insurance_claim
+cashless claim process,car_insurance_claim
+reimbursement claim car,car_insurance_claim
+police fir for insurance claim,car_insurance_claim
+claim rejected reason,car_insurance_claim
+how long does claim take,car_insurance_claim
+third party claim,car_insurance_claim
+own damage claim,car_insurance_claim
+informing insurer after accident,car_insurance_claim
+
+car service schedule,car_maintenance_schedule
+how often to service car,car_maintenance_schedule
+first service car,car_maintenance_schedule
+free service schedule,car_maintenance_schedule
+car maintenance checklist,car_maintenance_schedule
+what does full service include,car_maintenance_schedule
+timing belt when to replace,car_maintenance_schedule
+coolant change interval,car_maintenance_schedule
+transmission fluid change,car_maintenance_schedule
+spark plug replacement schedule,car_maintenance_schedule
+diesel car service interval,car_maintenance_schedule
+service at authorized center,car_maintenance_schedule
+
+ev range how much,ev_range
+electric car real world range,ev_range
+how to increase ev range,ev_range
+ev charging time,ev_range
+dc fast charging ev,ev_range
+ev charging stations india,ev_range
+charging ev at home,ev_range
+ev range anxiety,ev_range
+ev battery drain highway,ev_range
+best ev in india under 15 lakh,ev_range
+tata nexon ev range,ev_range
+charging level 1 2 3 difference,ev_range
+
+ev maintenance cost,ev_maintenance
+do evs need oil change,ev_maintenance
+ev brake pads last longer,ev_maintenance
+ev battery health,ev_maintenance
+regenerative braking explained,ev_maintenance
+ev battery degradation,ev_maintenance
+ev long term cost,ev_maintenance
+how to maintain ev battery,ev_maintenance
+
+how do i upload documents,document_storage
+upload vehicle documents,document_storage
+store car documents online,document_storage
+rc upload,document_storage
+insurance upload,document_storage
+puc certificate upload,document_storage
+driving licence upload,document_storage
+can i show digital documents to police,document_storage
+how to organize car documents,document_storage
+documents needed for car,document_storage
+
+puc certificate what is it,puc_certificate
+puc validity period,puc_certificate
+puc test cost,puc_certificate
+how to get puc,puc_certificate
+car failed puc test,puc_certificate
+fine for no puc,puc_certificate
+puc certificate expired,puc_certificate
+where to get puc done,puc_certificate
+puc for petrol diesel car,puc_certificate
+
+traffic challan how to check,challan_tracking
+how to pay challan online,challan_tracking
+challan for my vehicle,challan_tracking
+pending challans check,challan_tracking
+echallan payment,challan_tracking
+challan pariva dhan,challan_tracking
+traffic fine types india,challan_tracking
+how much fine for speeding,challan_tracking
+challan without violation,challan_tracking
+contest wrong challan,challan_tracking
+
+reminder for insurance,challan_reminders
+reminder for puc renewal,challan_reminders
+service reminder,challan_reminders
+set reminder for rc renewal,challan_reminders
+notification for document expiry,challan_reminders
+alert for challan due,challan_reminders
+
+how to use car assistant,ai_car_recommendation
+ai car recommendation how,ai_car_recommendation
+suggest best car for me,ai_car_recommendation
+car under 10 lakh recommendations,ai_car_recommendation
+car under 15 lakh,ai_car_recommendation
+best suv under 20 lakh,ai_car_recommendation
+family car recommendations,ai_car_recommendation
+best mileage car india,ai_car_recommendation
+best first car india,ai_car_recommendation
+car for city driving,ai_car_recommendation
+knn car recommendation,ai_car_recommendation
+how does ai pick car,ai_car_recommendation
+configure car recommendation,ai_car_recommendation
+
+car resale value,resale_value
+which car has best resale,resale_value
+maruti resale value,resale_value
+how to sell my car,resale_value
+car value after 3 years,resale_value
+service history resale,resale_value
+white car resale,resale_value
+cars24 vs olx sell car,resale_value
+how depreciation affects resale,resale_value
+
+engine coolant,coolant
+coolant level how to check,coolant
+engine overheating,coolant
+temperature gauge red,coolant
+coolant flush needed,coolant
+what type of coolant to use,coolant
+open radiator cap,coolant
+coolant colour what,coolant
+
+when to change spark plugs,spark_plugs
+spark plug symptoms worn,spark_plugs
+iridium vs copper spark plugs,spark_plugs
+spark plug replacement cost,spark_plugs
+glow plug diesel car,spark_plugs
+rough idle spark plug,spark_plugs
+misfire spark plug,spark_plugs
+
+insurance renewal before expiry,car_insurance_renewal
+ncb lost because lapsed,car_insurance_renewal
+compare insurance online,car_insurance_renewal
+change insurance company,car_insurance_renewal
+idv value insurance,car_insurance_renewal
+port ncb to new insurer,car_insurance_renewal
+
+maintenance log how to use,maintenance_section
+log service record,maintenance_section
+service history app,maintenance_section
+insurance details store,maintenance_section
+insurance card platform,maintenance_section
+how to add maintenance record,maintenance_section
+
+what is vahansathi,platform_overview
+how does vahansathi work,platform_overview
+features of vahansathi,platform_overview
+what can this app do,platform_overview
+tell me about this platform,platform_overview
+what is this app,platform_overview
+explain this platform,platform_overview
+
+who owns vahansathi,platform_identity
+who made this app,platform_identity
+who created vahansathi,platform_identity
+what company is this,platform_identity
+who is behind vahansathi,platform_identity
+
+my data is safe,data_security
+is my data secure,data_security
+privacy of documents,data_security
+who can see my documents,data_security
+data encryption,data_security
+
+how to login,account_access
+create account,account_access
+forgot password,account_access
+reset password,account_access
+sign up vahansathi,account_access
+account not working,account_access
+change password,account_access
+
+7 seater car india,seating_capacity
+car for large family,seating_capacity
+which car has 7 seats,seating_capacity
+6 seater car,seating_capacity
+mpv vs suv seating,seating_capacity
+3rd row legroom,seating_capacity
+captain seats car,seating_capacity
+best 7 seater under 20 lakh,seating_capacity
+
+sunroof worth it,sunroof
+sunroof maintenance,sunroof
+panoramic sunroof vs normal,sunroof
+sunroof leaking,sunroof
+sunroof drain tube,sunroof
+sunroof squeaking,sunroof
+which cars have sunroof,sunroof
+sunroof added cost,sunroof
+
+manual vs automatic car,transmission
+amt vs dct vs cvt,transmission
+which gearbox is best india,transmission
+automatic car mileage,transmission
+cvt transmission,transmission
+dct gearbox problems,transmission
+amt jerky in traffic,transmission
+torque converter smooth,transmission
+which is best for city driving automatic,transmission
+
+petrol types india,fuel_types_india
+premium petrol worth it,fuel_types_india
+speed petrol vs normal,fuel_types_india
+bs6 fuel what is it,fuel_types_india
+wrong fuel in car,fuel_types_india
+diesel in petrol car,fuel_types_india
+cng stations near me,fuel_types_india
+ev charging station india,fuel_types_india
+
+how to wash car,car_washing
+car washing tips,car_washing
+ceramic coating worth it,car_washing
+car wax how often,car_washing
+bird droppings on car,car_washing
+car paint protection,car_washing
+touchless car wash,car_washing
+microfiber cloth for car,car_washing
+car shampoo which to use,car_washing
+nano coating car,car_washing
+
+thank you,thanks
+thanks,thanks
+that's helpful,thanks
+great help,thanks
+you're great,thanks
+awesome,thanks
+perfect answer,thanks

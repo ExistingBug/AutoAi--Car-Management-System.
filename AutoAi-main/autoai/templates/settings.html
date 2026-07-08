@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VahanSathi – Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/theme.css"/>
+<script src="/static/theme.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#EAF4FB;--blue:#3A8DCA;--blue-dark:#2670A8;--blue-light:#5BACD6;--blue-pale:#C8E4F5;
+  --amber:#F5A623;--amber-glow:#FAC05E;
+  --text:#1A2533;--text-mid:#5A6A7A;--text-soft:#9AAABB;
+  --border:#D8EAF6;--bg:#F0F7FE;--green:#34A853;--green-pale:#E6F5EC;
+  --sidebar-w:248px;--sidebar-bg:#fff;
+}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--sidebar-bg);border-right:1.5px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:20;transition:background 0.3s}
+.sb-brand{padding:22px 18px 18px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:10px}
+.sb-logo-text{font-family:'DM Serif Display',serif;font-size:19px;color:var(--text);letter-spacing:-0.3px}
+.sb-nav{flex:1;padding:14px 0;overflow-y:auto}
+.sb-section-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-soft);padding:12px 20px 4px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 16px;font-size:13.5px;font-weight:500;color:var(--text-mid);text-decoration:none;border-left:3px solid transparent;transition:all 0.15s;margin:1px 6px;border-radius:0 8px 8px 0}
+.nav-item .nav-icon{width:28px;height:28px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:background 0.15s}
+.nav-item:hover{color:var(--blue);background:var(--sky)}.nav-item:hover .nav-icon{background:var(--blue-pale)}
+.nav-item.active{color:var(--blue);background:linear-gradient(90deg,var(--sky),#fff);border-left-color:var(--blue);font-weight:600}
+.nav-item.active .nav-icon{background:var(--blue-pale)}
+.sb-footer{padding:14px 18px;border-top:1.5px solid var(--border)}
+.sb-user{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.sb-avatar{width:32px;height:32px;background:linear-gradient(135deg,var(--amber),var(--amber-glow));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700;flex-shrink:0}
+.sb-name{font-size:12.5px;font-weight:600;color:var(--text)}
+.sb-role{font-size:10.5px;color:var(--text-soft)}
+.sb-signout{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-soft);cursor:pointer;padding:6px 8px;border-radius:7px;transition:all 0.15s}
+.sb-signout:hover{color:#C94040;background:#fff0f0}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{flex-shrink:0;background:#fff;border-bottom:1.5px solid var(--border);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.tb-left{display:flex;align-items:center;gap:14px}
+.back-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;background:var(--sky);border:1.5px solid var(--blue-pale);color:var(--blue);border-radius:8px;font-size:12.5px;font-weight:700;text-decoration:none;transition:all 0.18s}
+.back-btn:hover{background:var(--blue-pale);transform:translateX(-1px)}
+.tb-breadcrumb{font-size:12px;color:var(--text-soft)}.tb-breadcrumb span{color:var(--text-mid)}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-badge{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--green-pale);color:var(--green);padding:3px 10px;border-radius:20px}
+
+/* HERO */
+.page-hero{flex-shrink:0;background:var(--hero-grad,linear-gradient(120deg,#1A4D7A 0%,var(--blue) 55%,var(--blue-light) 100%));padding:28px 36px;position:relative;overflow:hidden;margin-bottom:0}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:36px 36px}
+.page-hero::after{content:'⚙️';position:absolute;right:24px;bottom:-8px;font-size:100px;opacity:0.07}
+.hero-inner{position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px}
+.hero-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:4px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.72)}
+
+/* CONTENT */
+.content{padding:32px 36px 48px;flex:1}
+.settings-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+
+/* SECTION */
+.settings-section{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:26px;transition:box-shadow 0.2s}
+.settings-section:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06)}
+.ss-header{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:14px;border-bottom:1.5px solid var(--border)}
+.ss-icon{width:40px;height:40px;border-radius:11px;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:20px}
+.ss-icon.amber-bg{background:#FFF7E6}.ss-icon.green-bg{background:var(--green-pale)}.ss-icon.purple-bg{background:#F3F0FF}
+.ss-title{font-size:15px;font-weight:700;color:var(--text)}
+.ss-sub{font-size:12px;color:var(--text-soft);margin-top:2px}
+
+/* THEME CARDS */
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.theme-card{
+  border:2px solid var(--border);border-radius:12px;padding:16px 16px 14px;cursor:pointer;
+  transition:all 0.2s;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+}
+.theme-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--tc-accent,#ccc);border-radius:12px 12px 0 0}
+.theme-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.theme-card.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,141,202,0.15)}
+.theme-card.selected::after{content:'✓';position:absolute;top:10px;right:12px;width:22px;height:22px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;line-height:22px;text-align:center}
+.tc-swatch{display:flex;gap:5px;margin-bottom:4px}
+.tc-dot{width:22px;height:22px;border-radius:50%;flex-shrink:0;border:2px solid rgba(0,0,0,0.07)}
+.tc-name{font-size:13px;font-weight:700;color:var(--text)}
+.tc-brand{font-size:11px;color:var(--text-soft);display:flex;align-items:center;gap:4px}
+
+/* Ferrari theme preview */
+.tc-ferrari{--tc-accent:#DC0000}.tc-ferrari .tc-dot:nth-child(1){background:#DC0000}.tc-ferrari .tc-dot:nth-child(2){background:#1C1C1C}.tc-ferrari .tc-dot:nth-child(3){background:#F6C026}
+/* Porsche theme preview */
+.tc-porsche{--tc-accent:#8C6D3F}.tc-porsche .tc-dot:nth-child(1){background:#8C6D3F}.tc-porsche .tc-dot:nth-child(2){background:#1C1810}.tc-porsche .tc-dot:nth-child(3){background:#D0AF72}
+/* BMW theme preview */
+.tc-bmw{--tc-accent:#0066CC}.tc-bmw .tc-dot:nth-child(1){background:#0066CC}.tc-bmw .tc-dot:nth-child(2){background:#0A0F1A}.tc-bmw .tc-dot:nth-child(3){background:#FFFFFF;border-color:#ccc}
+/* Mercedes theme preview */
+.tc-mercedes{--tc-accent:#262626}.tc-mercedes .tc-dot:nth-child(1){background:#262626}.tc-mercedes .tc-dot:nth-child(2){background:#111111}.tc-mercedes .tc-dot:nth-child(3){background:#C5A028}
+/* Lamborghini theme preview */
+.tc-lamborghini{--tc-accent:#C9A800}.tc-lamborghini .tc-dot:nth-child(1){background:#0D0D0D}.tc-lamborghini .tc-dot:nth-child(2){background:#C9A800}.tc-lamborghini .tc-dot:nth-child(3){background:#FFD700}
+/* Default theme preview */
+.tc-default{--tc-accent:#3A8DCA}.tc-default .tc-dot:nth-child(1){background:#3A8DCA}.tc-default .tc-dot:nth-child(2){background:#F5A623}.tc-default .tc-dot:nth-child(3){background:#EAF4FB;border-color:#C8E4F5}
+
+/* Live preview bar */
+.preview-bar{margin-top:16px;border-radius:10px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
+.pb-label{font-size:12px;font-weight:600;color:rgba(255,255,255,0.75)}
+.pb-name{font-size:14px;font-weight:700;color:#fff}
+.pb-badge{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+
+/* FORM FIELDS */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px}
+.field input,.field select{width:100%;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:9px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,141,202,0.1);background:#fff}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.save-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(58,141,202,0.25)}
+.save-btn:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 5px 16px rgba(58,141,202,0.35)}
+.save-btn.success{background:var(--green)!important}
+
+/* TOGGLES */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f0f5fa}
+.toggle-row:last-child{border-bottom:none}
+.tr-info{}
+.tr-label{font-size:13px;font-weight:600;color:var(--text)}
+.tr-desc{font-size:11.5px;color:var(--text-soft);margin-top:2px}
+.toggle{position:relative;width:42px;height:24px;background:#CBD5E1;border-radius:12px;cursor:pointer;transition:background 0.25s;flex-shrink:0}
+.toggle.on{background:var(--blue)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:transform 0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.toggle.on::after{transform:translateX(18px)}
+
+/* PROFILE PIC */
+.profile-pic-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding:14px 16px;background:var(--bg);border-radius:12px;border:1.5px solid var(--border)}
+.profile-pic-preview{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-glow));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;overflow:hidden;flex-shrink:0}
+.profile-pic-preview img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.prof-pic-btn{display:inline-block;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid var(--blue-pale);border-radius:8px;cursor:pointer;transition:all 0.2s}
+.prof-pic-btn:hover{background:var(--sky)}
+.prof-pic-hint{font-size:11px;color:var(--text-soft);margin-top:5px}
+/* ABOUT */
+.about-card{background:linear-gradient(135deg,var(--sky),#fff);border:1.5px solid var(--blue-pale);border-radius:14px;padding:20px;text-align:center}
+.about-logo{margin:0 auto 12px;width:52px;height:52px}
+.about-name{font-size:18px;font-weight:700;color:var(--text);font-family:'DM Serif Display',serif;margin-bottom:4px}
+.about-ver{font-size:12px;color:var(--text-soft)}
+.about-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.about-tag{font-size:11px;font-weight:600;background:var(--blue-pale);color:var(--blue-dark);padding:3px 10px;border-radius:20px}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <rect width="34" height="34" rx="9" fill="url(#sg1)"/>
+      <path d="M7 21.5l2.5-6.5h15l2.5 6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+      <rect x="7" y="21.5" width="20" height="4" rx="2" fill="#fff" fill-opacity="0.9"/>
+      <circle cx="11" cy="25.5" r="2" fill="#F5A623"/>
+      <circle cx="23" cy="25.5" r="2" fill="#F5A623"/>
+      <path d="M9.5 15l2-5h11l2 5" fill="#fff" fill-opacity="0.45"/>
+      <defs><linearGradient id="sg1" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#2670A8"/><stop offset="1" stop-color="#5BACD6"/></linearGradient></defs>
+    </svg>
+    <span class="sb-logo-text">VahanSathi</span>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main Menu</div>
+    <a class="nav-item" href="/dashboard"><div class="nav-icon">🏠</div>Dashboard</a>
+    <a class="nav-item" href="/carsearch"><div class="nav-icon">🔍</div>Car Search</a>
+    <a class="nav-item" href="/documents"><div class="nav-icon">📁</div>Documents &amp; Reminders</a>
+    <a class="nav-item" href="/maintenance"><div class="nav-icon">🔧</div>Maintenance &amp; Insurance</a>
+    <a class="nav-item" href="/chat"><div class="nav-icon">💬</div>Car Assistant AI</a>
+    <a class="nav-item" href="/faq"><div class="nav-icon">🤖</div>FAQ Chatbot</a>
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item active" href="/settings"><div class="nav-icon">⚙️</div>Settings</a>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-avatar">J</div>
+      <div>
+        <div class="sb-name">Jane Doe</div>
+        <div class="sb-role">My Garage · 1 Vehicle</div>
+      </div>
+    </div>
+        <div class="sb-signout" onclick="doLogout()">⬅ Sign out</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <a class="back-btn" href="/dashboard">← Dashboard</a>
+      <div class="tb-breadcrumb">VahanSathi <span>/ Settings</span></div>
+    </div>
+    <div class="tb-right">
+      <span class="tb-badge">Personalisation</span>
+    </div>
+  </div>
+
+  <div class="page-hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Preferences</div>
+      <div class="hero-title">Settings</div>
+      <div class="hero-sub">Customise your VahanSathi experience — themes, profile, notifications</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="settings-grid">
+
+      <!-- LEFT: THEME + PROFILE -->
+      <div style="display:flex;flex-direction:column;gap:22px">
+
+        <!-- THEME SELECTION -->
+        <div class="settings-section">
+          <div class="ss-header">
+            <div class="ss-icon">🎨</div>
+            <div>
+              <div class="ss-title">Car Brand Theme</div>
+              <div class="ss-sub">Choose a theme inspired by iconic car manufacturers</div>
+            </div>
+          </div>
+
+          <div class="theme-grid">
+
+            <div class="theme-card tc-default" id="tc-default" onclick="selectTheme('default')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">VahanSathi Blue</div>
+              <div class="tc-brand">⭐ Default</div>
+            </div>
+
+            <div class="theme-card tc-ferrari" id="tc-ferrari" onclick="selectTheme('ferrari')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">Rosso Corsa</div>
+              <div class="tc-brand">🐎 Ferrari</div>
+            </div>
+
+            <div class="theme-card tc-porsche" id="tc-porsche" onclick="selectTheme('porsche')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">Stuttgart Platinum</div>
+              <div class="tc-brand">🏎 Porsche</div>
+            </div>
+
+            <div class="theme-card tc-bmw" id="tc-bmw" onclick="selectTheme('bmw')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">Bavarian Blue</div>
+              <div class="tc-brand">🔵 BMW</div>
+            </div>
+
+            <div class="theme-card tc-mercedes" id="tc-mercedes" onclick="selectTheme('mercedes')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">Obsidian Silver</div>
+              <div class="tc-brand">⭐ Mercedes-Benz</div>
+            </div>
+
+            <div class="theme-card tc-lamborghini" id="tc-lamborghini" onclick="selectTheme('lamborghini')">
+              <div class="tc-swatch"><div class="tc-dot"></div><div class="tc-dot"></div><div class="tc-dot"></div></div>
+              <div class="tc-name">Giallo Superleggera</div>
+              <div class="tc-brand">🐂 Lamborghini</div>
+            </div>
+
+          </div>
+
+          <!-- Live preview bar -->
+          <div class="preview-bar" id="preview-bar" style="background:var(--hero-grad,linear-gradient(120deg,#1A4D7A,#3A8DCA,#5BACD6))">
+            <div>
+              <div class="pb-label">Active Theme</div>
+              <div class="pb-name" id="preview-name">VahanSathi Blue</div>
+            </div>
+            <div class="pb-badge" id="preview-brand">Default</div>
+          </div>
+        </div>
+
+        <!-- PROFILE SETTINGS -->
+        <div class="settings-section">
+          <div class="ss-header">
+            <div class="ss-icon amber-bg">👤</div>
+            <div>
+              <div class="ss-title">Profile</div>
+              <div class="ss-sub">Update your account details</div>
+            </div>
+          </div>
+          <!-- Profile picture upload -->
+          <div class="profile-pic-row">
+            <div class="profile-pic-preview" id="prof-pic-preview">J</div>
+            <div>
+              <label for="prof-pic-input" class="prof-pic-btn">&#128247; Change Photo</label>
+              <input type="file" id="prof-pic-input" accept="image/*" onchange="previewProfilePic(this)" style="display:none"/>
+              <div class="prof-pic-hint">JPG or PNG · max 2 MB</div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>First Name</label><input type="text" value="Jane" id="fname"/></div>
+            <div class="field"><label>Last Name</label><input type="text" value="Doe" id="lname"/></div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" value="jane@example.com" id="email"/></div>
+          <div class="field"><label>Phone Number</label><input type="tel" value="" id="phone" placeholder="+91 98765 43210"/></div>
+          <div class="field">
+            <label>City</label>
+            <select id="city">
+              <option>Mumbai</option><option>Delhi</option><option>Bangalore</option><option>Chennai</option>
+              <option>Hyderabad</option><option>Pune</option><option>Kolkata</option><option>Ahmedabad</option>
+              <option>Jaipur</option><option>Surat</option><option>Lucknow</option><option>Kochi</option><option>Chandigarh</option>
+            </select>
+          </div>
+          <div class="field"><label>Vehicle Registration</label><input type="text" placeholder="MH 01 AB 1234" id="vreg"/></div>
+          <button class="save-btn" onclick="saveProfile()" id="save-profile-btn">&#128190; Save Profile</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: NOTIFICATIONS + ABOUT -->
+      <div style="display:flex;flex-direction:column;gap:22px">
+
+        <!-- NOTIFICATIONS -->
+        <div class="settings-section">
+          <div class="ss-header">
+            <div class="ss-icon green-bg">🔔</div>
+            <div>
+              <div class="ss-title">Notifications</div>
+              <div class="ss-sub">Control what alerts you receive</div>
+            </div>
+          </div>
+          <div class="toggle-row">
+            <div class="tr-info">
+              <div class="tr-label">Document Expiry Alerts</div>
+              <div class="tr-desc">Get notified before RC, PUC, or licence expires</div>
+            </div>
+            <div class="toggle on" id="t-docs" onclick="togglePref('t-docs','doc_alerts')"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="tr-info">
+              <div class="tr-label">Service Reminders</div>
+              <div class="tr-desc">Oil change, tyre rotation, and maintenance alerts</div>
+            </div>
+            <div class="toggle on" id="t-service" onclick="togglePref('t-service','service_alerts')"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="tr-info">
+              <div class="tr-label">Insurance Renewal</div>
+              <div class="tr-desc">30-day and 7-day insurance expiry reminders</div>
+            </div>
+            <div class="toggle on" id="t-ins" onclick="togglePref('t-ins','ins_alerts')"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="tr-info">
+              <div class="tr-label">AI Recommendations</div>
+              <div class="tr-desc">Personalized car tips and market updates</div>
+            </div>
+            <div class="toggle" id="t-ai" onclick="togglePref('t-ai','ai_alerts')"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="tr-info">
+              <div class="tr-label">Petrol Price Alerts</div>
+              <div class="tr-desc">Daily fuel price updates for your city</div>
+            </div>
+            <div class="toggle" id="t-fuel" onclick="togglePref('t-fuel','fuel_alerts')"></div>
+          </div>
+        </div>
+
+        <!-- PREFERENCES -->
+        <div class="settings-section">
+          <div class="ss-header">
+            <div class="ss-icon purple-bg">🛣️</div>
+            <div>
+              <div class="ss-title">Driving Preferences</div>
+              <div class="ss-sub">Used by Car Assistant AI for better recommendations</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Preferred Fuel Type</label>
+            <select id="fuel-type">
+              <option>Petrol</option><option>Diesel</option><option>CNG</option><option>Electric</option><option>Hybrid</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Preferred Segment</label>
+            <select id="segment">
+              <option>Hatchback</option><option>Sedan</option><option>SUV</option><option>MUV</option><option>Luxury</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Budget Range (₹ Lakh)</label>
+            <select id="budget">
+              <option>Under 10L</option><option>10L – 20L</option><option>20L – 40L</option><option>40L – 80L</option><option>80L+</option>
+            </select>
+          </div>
+          <button class="save-btn" onclick="savePrefs()" id="save-prefs-btn">💾 Save Preferences</button>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="settings-section">
+          <div class="about-card">
+            <svg class="about-logo" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="52" height="52" rx="14" fill="url(#ag1)"/>
+              <path d="M10 33l4-10h24l4 10" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+              <rect x="10" y="33" width="32" height="6" rx="3" fill="#fff" fill-opacity="0.9"/>
+              <circle cx="16.5" cy="39" r="3" fill="#F5A623"/>
+              <circle cx="35.5" cy="39" r="3" fill="#F5A623"/>
+              <path d="M14 23l3-7h18l3 7" fill="#fff" fill-opacity="0.45"/>
+              <defs><linearGradient id="ag1" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#2670A8"/><stop offset="1" stop-color="#5BACD6"/></linearGradient></defs>
+            </svg>
+            <div class="about-name">VahanSathi</div>
+            <div class="about-ver">Version 2.0 · Mar 2026</div>
+            <div class="about-tags">
+              <span class="about-tag">KNN ML</span>
+              <span class="about-tag">Flask</span>
+              <span class="about-tag">90+ Cars</span>
+              <span class="about-tag">38 FAQ Intents</span>
+              <span class="about-tag">13 Cities</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Theme Selection ──
+const THEME_META = {
+  default:     { name:'VahanSathi Blue',      brand:'Default',      grad:'linear-gradient(120deg,#1A4D7A,#3A8DCA,#5BACD6)' },
+  ferrari:     { name:'Rosso Corsa',          brand:'Ferrari',      grad:'linear-gradient(120deg,#6B0000,#DC0000,#FF3333)' },
+  porsche:     { name:'Stuttgart Platinum',   brand:'Porsche',      grad:'linear-gradient(120deg,#2C2010,#8C6D3F,#B89460)' },
+  bmw:         { name:'Bavarian Blue',        brand:'BMW',          grad:'linear-gradient(120deg,#001A40,#0066CC,#3399FF)' },
+  mercedes:    { name:'Obsidian Silver',      brand:'Mercedes-Benz',grad:'linear-gradient(120deg,#000,#262626,#555)' },
+  lamborghini: { name:'Giallo Superleggera',  brand:'Lamborghini',  grad:'linear-gradient(120deg,#0D0D0D,#2A2600,#4A4400)' },
+};
+
+function selectTheme(key) {
+  if (window.VahanTheme) window.VahanTheme.apply(key);
+  document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('tc-' + key).classList.add('selected');
+  const meta = THEME_META[key];
+  document.getElementById('preview-name').textContent = meta.name;
+  document.getElementById('preview-brand').textContent = meta.brand;
+  document.getElementById('preview-bar').style.background = meta.grad;
+  // Update page hero
+  document.querySelector('.page-hero').style.background = meta.grad;
+}
+
+// Init
+(function() {
+  const saved = localStorage.getItem('vahan_theme') || 'default';
+  document.getElementById('tc-' + saved).classList.add('selected');
+  const meta = THEME_META[saved];
+  document.getElementById('preview-name').textContent = meta.name;
+  document.getElementById('preview-brand').textContent = meta.brand;
+  document.getElementById('preview-bar').style.background = meta.grad;
+  document.querySelector('.page-hero').style.background = meta.grad;
+})();
+
+// ── Toggles ──
+function togglePref(id, key) {
+  const el = document.getElementById(id);
+  const isOn = el.classList.toggle('on');
+  localStorage.setItem('pref_' + key, isOn ? '1' : '0');
+}
+
+// ── Profile picture preview ──
+function previewProfilePic(input) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const prev = document.getElementById('prof-pic-preview');
+    prev.innerHTML = '<img src="' + e.target.result + '" alt="profile"/>';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+// ── Save profile ──
+function saveProfile() {
+  const btn = document.getElementById('save-profile-btn');
+  btn.textContent = '&#10003; Saved!'; btn.classList.add('success');
+  setTimeout(() => { btn.innerHTML = '&#128190; Save Profile'; btn.classList.remove('success'); }, 2000);
+}
+
+// ── Save prefs ──
+function savePrefs() {
+  const btn = document.getElementById('save-prefs-btn');
+  btn.textContent = '✓ Saved!'; btn.classList.add('success');
+  setTimeout(() => { btn.textContent = '💾 Save Preferences'; btn.classList.remove('success'); }, 2000);
+}
+</script>
+  <script src="/static/user_session.js"></script>
+</body>
+</html>

@@ -1,0 +1,1059 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+/* ── RESET / BASE for landing ────────────────────────────────── */
+.land {
+    font-family: 'Barlow', sans-serif;
+    background: #0a0b0d;
+    color: #edecea;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+.land-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    height: 64px;
+    background: rgba(10, 11, 13, 0.8);
+    border-bottom: 1px solid #252830;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    backdrop-filter: blur(20px);
+}
+
+.land-nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.14em;
+    color: #e8f04a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.land-nav-dot {
+    width: 8px;
+    height: 8px;
+    background: #e8f04a;
+    border-radius: 50%;
+    display: inline-block;
+    animation: dotpulse 2.5s ease-in-out infinite;
+}
+
+@keyframes dotpulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(1.6);
+    }
+}
+
+.land-nav-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.land-btn-ghost {
+    background: transparent;
+    color: #9198a8;
+    border: 1px solid #252830;
+    border-radius: 4px;
+    padding: 7px 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.land-btn-ghost:hover {
+    color: #edecea;
+    border-color: #32363f;
+}
+
+.land-btn-solid {
+    background: #e8f04a;
+    color: #0a0b0d;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.land-btn-solid:hover {
+    background: #c8d93a;
+    transform: translateY(-1px);
+}
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.land-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 6% 80px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.land-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.land-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(232, 240, 74, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 240, 74, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.land-hero-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(232, 240, 74, 0.07) 0%, transparent 60%);
+}
+
+.land-hero-content {
+    position: relative;
+    z-index: 1;
+    animation: heroIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes heroIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.land-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #e8f04a;
+    border: 1px solid rgba(232, 240, 74, 0.25);
+    background: rgba(232, 240, 74, 0.06);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 2rem;
+    animation: heroIn 0.9s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e8f04a;
+    animation: dotpulse 2.5s ease-in-out infinite;
+}
+
+/* ── HERO BADGE PILLS ────────────────────────────────────────── */
+.land-hero-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2rem;
+    animation: heroIn 0.9s 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-hero-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9198a8;
+    border: 1px solid #252830;
+    background: #13151a;
+    padding: 5px 12px;
+    border-radius: 99px;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.land-hero-badge:hover {
+    color: #e8f04a;
+    border-color: rgba(232,240,74,0.3);
+}
+
+/* ── SPEED LINES (hero bg accent) ─────────────────────────────── */
+.land-speed-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.land-speed-lines::before,
+.land-speed-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(232,240,74,0.08) 40%, rgba(232,240,74,0.08) 60%, transparent);
+    animation: speedline 4s ease-in-out infinite;
+}
+
+.land-speed-lines::before {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.land-speed-lines::after {
+    left: 80%;
+    animation-delay: 2s;
+}
+
+@keyframes speedline {
+    0%, 100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+    30% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    70% { opacity: 1; transform: scaleY(1); transform-origin: bottom; }
+    100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
+}
+
+.land-hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 13vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    animation: heroIn 0.9s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-title-solid {
+    color: #edecea;
+}
+
+.land-title-outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #edecea;
+    opacity: 0.6;
+}
+
+.land-hero-sub {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: #9198a8;
+    line-height: 1.65;
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+    animation: heroIn 0.9s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-hero-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: heroIn 0.9s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-btn-hero {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e8f04a;
+    color: #0a0b0d;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.land-btn-hero:hover {
+    background: #c8d93a;
+    transform: translateY(-2px);
+}
+
+.land-btn-hero:active {
+    transform: translateY(0);
+}
+
+.land-btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+}
+
+.land-btn-hero:hover .land-btn-arrow {
+    transform: translateX(4px);
+}
+
+.land-btn-secondary {
+    background: transparent;
+    color: #6b7180;
+    border: 1px solid #252830;
+    border-radius: 4px;
+    padding: 13px 22px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.land-btn-secondary:hover {
+    color: #edecea;
+    border-color: #32363f;
+}
+
+.land-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: #6b7180;
+    animation: fadeInLate 1s 1s both;
+}
+
+@keyframes fadeInLate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.land-scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, #6b7180, transparent);
+    animation: scrollline 2s ease-in-out infinite;
+}
+
+@keyframes scrollline {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(0.4);
+        transform-origin: top;
+    }
+}
+
+/* ── STATS ───────────────────────────────────────────────────── */
+.land-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #252830;
+    border-bottom: 1px solid #252830;
+    background: #13151a;
+}
+
+.land-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1rem;
+    border-right: 1px solid #252830;
+    transition: background 0.25s;
+}
+
+.land-stat:last-child {
+    border-right: none;
+}
+
+.land-stat:hover {
+    background: #1c1f27;
+}
+
+.land-stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    color: #e8f04a;
+    line-height: 1;
+}
+
+.land-stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7180;
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* ── FEATURES ────────────────────────────────────────────────── */
+.land-features {
+    padding: 8rem 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.land-section-header {
+    margin-bottom: 4rem;
+}
+
+.land-section-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #e8f04a;
+    margin-bottom: 1rem;
+}
+
+.land-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 0.04em;
+    color: #edecea;
+    line-height: 0.95;
+}
+
+.land-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: #252830;
+    border: 1px solid #252830;
+}
+
+.land-feature-card {
+    background: #0a0b0d;
+    padding: 2.5rem;
+    transition: background 0.25s;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.land-feature-card:hover {
+    background: #13151a;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.land-feature-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.land-feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: rgba(232, 240, 74, 0.3);
+}
+
+.land-feature-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.land-feature-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    color: #edecea;
+    margin-bottom: 4px;
+}
+
+.land-feature-sub {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #e8f04a;
+    margin-bottom: 1rem;
+}
+
+.land-feature-desc {
+    font-size: 0.9rem;
+    color: #6b7180;
+    line-height: 1.7;
+}
+
+/* ── MARQUEE ─────────────────────────────────────────────────── */
+.land-marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid #252830;
+    border-bottom: 1px solid #252830;
+    background: #13151a;
+    padding: 1.25rem 0;
+}
+
+.land-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 18s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-33.333%);
+    }
+}
+
+.land-marquee-inner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+    color: #32363f;
+    white-space: nowrap;
+    padding-right: 2rem;
+}
+
+/* ── HOW IT WORKS ────────────────────────────────────────────── */
+.land-how {
+    padding: 8rem 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.land-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 0;
+}
+
+.land-step {
+    padding: 2.5rem 2.5rem 2.5rem 0;
+    border-right: 1px solid #252830;
+    padding-left: 2.5rem;
+}
+
+.land-step:last-child {
+    border-right: none;
+}
+
+.land-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(232, 240, 74, 0.25);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.land-step-line {
+    width: 32px;
+    height: 2px;
+    background: #e8f04a;
+    margin-bottom: 1.25rem;
+}
+
+.land-step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: #edecea;
+    margin-bottom: 0.75rem;
+}
+
+.land-step-desc {
+    font-size: 0.88rem;
+    color: #6b7180;
+    line-height: 1.7;
+}
+
+/* ── AI SECTION ──────────────────────────────────────────────── */
+.land-ai-section {
+    padding: 0 0 0 0;
+    border-top: 1px solid #252830;
+    background: #0a0b0d;
+}
+
+.land-ai-section-inner {
+    padding: 8rem 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.land-ai-section-sub {
+    font-size: 0.95rem;
+    color: #6b7180;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-top: 1rem;
+}
+
+.land-ai-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 4rem;
+}
+
+.land-ai-card {
+    position: relative;
+    background: #13151a;
+    border: 1px solid #252830;
+    border-radius: 12px;
+    padding: 2.5rem;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.land-ai-card:hover {
+    border-color: var(--ai-accent, #e8f04a);
+    transform: translateY(-4px);
+}
+
+.land-ai-card-glow {
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--ai-accent, #e8f04a) 0%, transparent 70%);
+    opacity: 0.04;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.land-ai-card:hover .land-ai-card-glow {
+    opacity: 0.10;
+}
+
+.land-ai-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.land-ai-tag {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ai-accent, #e8f04a);
+    border: 1px solid rgba(232,240,74,0.2);
+    background: rgba(232,240,74,0.05);
+    padding: 4px 10px;
+    border-radius: 99px;
+    border-color: color-mix(in srgb, var(--ai-accent, #e8f04a) 30%, transparent);
+    background: color-mix(in srgb, var(--ai-accent, #e8f04a) 6%, transparent);
+}
+
+.land-ai-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--ai-accent, #e8f04a) 40%, transparent));
+}
+
+.land-ai-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.06em;
+    color: #edecea;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.land-ai-sub {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ai-accent, #e8f04a);
+    margin-bottom: 1rem;
+}
+
+.land-ai-desc {
+    font-size: 0.88rem;
+    color: #6b7180;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+}
+
+.land-ai-stats-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid #252830;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+}
+
+.land-ai-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.75rem;
+    border-right: 1px solid #252830;
+    background: #0a0b0d;
+    transition: background 0.2s;
+}
+
+.land-ai-stat:last-child {
+    border-right: none;
+}
+
+.land-ai-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    color: var(--ai-accent, #e8f04a);
+    line-height: 1;
+}
+
+.land-ai-stat-lbl {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7180;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.land-ai-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1.75rem;
+}
+
+.land-ai-pill {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #9198a8;
+    background: #1c1f27;
+    border: 1px solid #252830;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.land-ai-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--ai-accent, #e8f04a);
+    border: 1px solid color-mix(in srgb, var(--ai-accent, #e8f04a) 40%, transparent);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.land-ai-cta-btn:hover {
+    background: color-mix(in srgb, var(--ai-accent, #e8f04a) 10%, transparent);
+    transform: translateX(4px);
+}
+
+/* ── AI TEASER BAND ───────────────────────────────────────────── */
+.land-ai-teaser {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #252830;
+    border-bottom: 1px solid #252830;
+    background: #0d0f14;
+}
+
+.land-ai-teaser-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 100% at 0% 50%, rgba(232,240,74,0.04) 0%, transparent 60%),
+        linear-gradient(90deg, rgba(232,240,74,0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.land-ai-teaser-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 6%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.land-ai-teaser-icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 24px rgba(232,240,74,0.3));
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.land-ai-teaser-text {
+    flex: 1;
+}
+
+.land-ai-teaser-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: 0.04em;
+    color: #edecea;
+    line-height: 1;
+    margin: 0.5rem 0 0.75rem;
+}
+
+.land-ai-teaser-desc {
+    font-size: 0.9rem;
+    color: #6b7180;
+    line-height: 1.7;
+    max-width: 480px;
+}
+
+/* ── CTA BAND ────────────────────────────────────────────────── */
+.land-cta-band {
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 6%;
+    text-align: center;
+    border-top: 1px solid #252830;
+}
+
+.land-cta-band-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232, 240, 74, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.land-cta-band-content {
+    position: relative;
+    z-index: 1;
+}
+
+.land-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: 0.05em;
+    color: #edecea;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.land-cta-title span {
+    color: transparent;
+    -webkit-text-stroke: 2px #e8f04a;
+}
+
+.land-cta-desc {
+    font-size: 1rem;
+    color: #6b7180;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.land-footer {
+    border-top: 1px solid #252830;
+    padding: 2.5rem 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: #0a0b0d;
+    flex-wrap: wrap;
+}
+
+.land-footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+    color: #32363f;
+}
+
+.land-footer-tagline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(232,240,74,0.2);
+    text-align: center;
+}
+
+.land-footer-copy {
+    font-size: 0.78rem;
+    color: #32363f;
+    letter-spacing: 0.04em;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .land-hero-title {
+        font-size: clamp(3.5rem, 18vw, 6rem);
+    }
+
+    .land-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .land-stat {
+        border-bottom: 1px solid #252830;
+    }
+
+    .land-features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .land-ai-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .land-ai-teaser-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .land-ai-teaser-icon {
+        font-size: 3rem;
+    }
+
+    .land-ai-teaser-desc {
+        max-width: 100%;
+    }
+
+    .land-ai-cta-btn {
+        align-self: center;
+    }
+
+    .land-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .land-step {
+        border-right: none;
+        border-bottom: 1px solid #252830;
+        padding: 2rem;
+    }
+
+    .land-step:last-child {
+        border-bottom: none;
+    }
+
+    .land-footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .land-features,
+    .land-how {
+        padding: 5rem 1.5rem;
+    }
+
+    .land-ai-section-inner {
+        padding: 5rem 1.5rem;
+    }
+
+    .land-cta-band {
+        padding: 5rem 1.5rem;
+    }
+
+    .land-ai-teaser {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .land-nav {
+        padding: 0 1.25rem;
+    }
+
+    .land-hero {
+        padding: 90px 1.25rem 60px;
+    }
+
+    .land-title-outline {
+        -webkit-text-stroke: 1px #edecea;
+    }
+}

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/static/theme.css"/>
+<script src="/static/theme.js"></script>
+<title>VahanSathi – Maintenance &amp; Insurance</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#EAF4FB;--blue:#3A8DCA;--blue-dark:#2670A8;--blue-light:#5BACD6;--blue-pale:#C8E4F5;
+  --amber:#F5A623;--amber-glow:#FAC05E;--white:#FFFFFF;
+  --text:#1A2533;--text-mid:#5A6A7A;--text-soft:#9AAABB;
+  --border:#D8EAF6;--bg:#F0F7FE;--green:#34A853;--green-pale:#E6F5EC;
+  --sidebar-w:248px;
+}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;display:flex}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:#fff;border-right:1.5px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:20}
+.sb-brand{padding:24px 20px 20px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:10px}
+.sb-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 10px rgba(58,141,202,0.3)}
+.sb-logo-text{font-family:'DM Serif Display',serif;font-size:19px;color:var(--text);letter-spacing:-0.3px}
+.sb-nav{flex:1;padding:16px 0;overflow-y:auto}
+.sb-section-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-soft);padding:14px 22px 5px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 18px;font-size:13.5px;font-weight:500;color:var(--text-mid);text-decoration:none;cursor:pointer;border-left:3px solid transparent;transition:all 0.15s;margin:1px 8px;border-radius:0 8px 8px 0}
+.nav-item .nav-icon{width:30px;height:30px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all 0.15s}
+.nav-item:hover{color:var(--blue);background:var(--sky)}
+.nav-item:hover .nav-icon{background:var(--blue-pale)}
+.nav-item.active{color:var(--blue);background:linear-gradient(90deg,var(--sky),#fff);border-left-color:var(--blue);font-weight:600}
+.nav-item.active .nav-icon{background:var(--blue-pale)}
+.sb-footer{padding:16px 20px;border-top:1.5px solid var(--border)}
+.sb-user{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sb-avatar{width:34px;height:34px;background:linear-gradient(135deg,var(--amber),var(--amber-glow));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;flex-shrink:0}
+.sb-user-info .sb-name{font-size:13px;font-weight:600;color:var(--text)}
+.sb-user-info .sb-role{font-size:11px;color:var(--text-soft)}
+.sb-signout{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-soft);cursor:pointer;padding:7px 10px;border-radius:8px;transition:all 0.15s}
+.sb-signout:hover{color:#C94040;background:#fff0f0}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:#fff;border-bottom:1.5px solid var(--border);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-breadcrumb{font-size:12px;color:var(--text-soft)}
+.topbar-breadcrumb span{color:var(--text-mid)}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.topbar-badge{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:var(--green-pale);color:var(--green);padding:3px 10px;border-radius:20px}
+.topbar-btn{width:34px;height:34px;border-radius:9px;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.15s}
+.topbar-btn:hover{background:var(--sky);border-color:var(--blue-pale)}
+
+.content{padding:28px 36px 40px;flex:1}
+
+/* Welcome strip */
+.welcome-strip{background:linear-gradient(120deg,#1A4D7A 0%,var(--blue) 55%,var(--blue-light) 100%);border-radius:16px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;position:relative;overflow:hidden}
+.welcome-strip::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:36px 36px}
+.welcome-strip::after{content:'🔧';position:absolute;right:24px;bottom:-8px;font-size:90px;opacity:0.08}
+.ws-left{position:relative;z-index:1}
+.ws-greeting{font-size:12px;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:5px}
+.ws-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:5px}
+.ws-sub{font-size:13px;color:rgba(255,255,255,0.72)}
+.ws-stats{display:flex;gap:0;position:relative;z-index:1}
+.ws-stat{text-align:center;padding:0 24px;border-left:1px solid rgba(255,255,255,0.15)}
+.ws-stat:first-child{border-left:none}
+.ws-stat-num{font-size:26px;font-weight:700;color:#fff;font-family:'DM Serif Display',serif}
+.ws-stat-lbl{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+
+/* Status cards */
+.status-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.status-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all 0.2s}
+.status-card:hover{border-color:var(--blue-pale);box-shadow:0 4px 20px rgba(58,141,202,0.09)}
+.sc-icon{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.sc-icon.blue{background:var(--sky)}.sc-icon.amber{background:#FFF7E6}.sc-icon.green{background:var(--green-pale)}
+.sc-label{font-size:11px;color:var(--text-soft);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:3px}
+.sc-val{font-size:20px;font-weight:700;color:var(--text)}
+.sc-sub{font-size:11.5px;color:var(--text-soft);margin-top:1px}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid-full{grid-column:1/-1}
+
+/* Cards */
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:26px;transition:box-shadow 0.2s,border-color 0.2s,transform 0.2s}
+.card:hover{box-shadow:0 8px 32px rgba(58,141,202,0.09);border-color:var(--blue-pale);transform:translateY(-1px)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.card-title-row{display:flex;align-items:center;gap:10px}
+.card-icon-box{width:38px;height:38px;border-radius:10px;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:18px}
+.card-icon-box.amber-bg{background:#FFF7E6}.card-icon-box.green-bg{background:var(--green-pale)}
+.card-title{font-size:15px;font-weight:700;color:var(--text)}
+.card-count{font-size:11.5px;color:var(--text-soft);background:var(--bg);padding:3px 9px;border-radius:20px;border:1px solid var(--border)}
+
+/* Upload */
+.upload-zone{border:2px dashed var(--blue-pale);border-radius:12px;padding:24px 20px;text-align:center;cursor:pointer;transition:all 0.2s;background:#fafcff}
+.upload-zone:hover,.upload-zone.over{border-color:var(--blue);background:rgba(58,141,202,0.03);box-shadow:0 0 0 4px rgba(58,141,202,0.08)}
+.upload-zone input{display:none}
+.uz-icon{font-size:28px;margin-bottom:8px;display:block}
+.uz-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.uz-sub{font-size:12px;color:var(--text-soft)}
+.uz-sub span{color:var(--blue);cursor:pointer;font-weight:500}
+.file-list{margin-top:12px;display:flex;flex-direction:column;gap:6px;max-height:150px;overflow-y:auto}
+.file-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg);border-radius:8px;transition:background 0.15s}
+.file-item:hover{background:#e2eef9}
+.fi-icon{font-size:15px;flex-shrink:0}
+.fi-name{flex:1;font-size:12.5px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fi-size{font-size:11px;color:var(--text-soft)}
+.fi-del{font-size:12px;cursor:pointer;color:var(--text-soft);padding:2px 4px;border-radius:4px;transition:all 0.15s}
+.fi-del:hover{color:#C94040;background:#fff0f0}
+
+/* Maintenance form */
+.field{margin-bottom:13px}
+.field label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:9px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;resize:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(58,141,202,0.09);background:#fff}
+.field-row{display:flex;gap:10px}
+.field-row .field{flex:1}
+.btn-sm{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:700;color:#fff;background:var(--blue);border:none;border-radius:9px;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(58,141,202,0.25)}
+.btn-sm:hover{background:var(--blue-dark);box-shadow:0 5px 16px rgba(58,141,202,0.35);transform:translateY(-1px)}
+.btn-sm.green-btn{background:var(--green);box-shadow:0 3px 10px rgba(52,168,83,0.25)}
+.btn-sm.green-btn:hover{background:#2E9648;box-shadow:0 5px 16px rgba(52,168,83,0.35)}
+
+/* Table */
+.records-table{width:100%;margin-top:14px;border-collapse:collapse}
+.records-table th{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);text-align:left;padding:8px 12px;border-bottom:1.5px solid var(--border)}
+.records-table td{font-size:13px;color:var(--text);padding:11px 12px;border-bottom:1px solid #f0f5fa;vertical-align:middle}
+.records-table tr:last-child td{border-bottom:none}
+.records-table tr:hover td{background:var(--sky)}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px}
+.badge.done{background:var(--green-pale);color:var(--green)}
+.badge.pending{background:#FFF7E6;color:var(--amber)}
+.del-btn{font-size:13px;cursor:pointer;color:var(--text-soft);transition:color 0.15s;padding:2px 4px;border-radius:4px}
+.del-btn:hover{color:#C94040;background:#fff0f0}
+.empty{text-align:center;padding:24px 0;font-size:13px;color:var(--text-soft)}
+
+/* Insurance card */
+.ins-card{background:linear-gradient(135deg,#2E7FBB,#4AA8D8);border-radius:14px;padding:22px 24px;color:#fff;position:relative;overflow:hidden;margin-bottom:18px}
+.ins-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.07)}
+.ins-card::after{content:'🛡️';position:absolute;right:20px;bottom:10px;font-size:48px;opacity:0.15}
+.ins-card-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px}
+.ins-card-name{font-size:17px;font-weight:700;margin-bottom:3px}
+.ins-card-num{font-size:13px;color:rgba(255,255,255,0.72);margin-bottom:14px}
+.ins-card-row{display:flex;gap:28px}
+.ins-card-field label{font-size:10px;color:rgba(255,255,255,0.55);display:block;margin-bottom:3px}
+.ins-card-field span{font-size:13px;font-weight:600}
+.ins-empty-state{font-size:13px;color:var(--text-soft);text-align:center;padding:18px 0}
+.invoice-upload-btn{display:inline-block;margin-top:6px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--blue);background:var(--sky);border:1.5px solid var(--blue-pale);border-radius:7px;cursor:pointer;transition:all 0.15s}
+.invoice-upload-btn:hover{background:var(--blue-pale)}
+.invoice-upload-btn{display:inline-block;margin-top:6px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--blue);background:var(--sky);border:1.5px solid var(--blue-pale);border-radius:7px;cursor:pointer;transition:all 0.15s}
+.invoice-upload-btn:hover{background:var(--blue-pale)}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <rect width="34" height="34" rx="9" fill="url(#dg3)"/>
+      <path d="M7 21.5l2.5-6.5h15l2.5 6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+      <rect x="7" y="21.5" width="20" height="4" rx="2" fill="#fff" fill-opacity="0.9"/>
+      <circle cx="11" cy="25.5" r="2" fill="#F5A623"/>
+      <circle cx="23" cy="25.5" r="2" fill="#F5A623"/>
+      <path d="M9.5 15l2-5h11l2 5" fill="#fff" fill-opacity="0.45"/>
+      <defs><linearGradient id="dg3" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#2670A8"/><stop offset="1" stop-color="#5BACD6"/></linearGradient></defs>
+    </svg>
+    <span class="sb-logo-text">VahanSathi</span>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main Menu</div>
+    <a class="nav-item" href="/dashboard"><div class="nav-icon">🏠</div>Dashboard</a>
+    <a class="nav-item" href="/carsearch"><div class="nav-icon">🔍</div>Car Search</a>
+    <a class="nav-item" href="/documents"><div class="nav-icon">📁</div>Documents &amp; Reminders</a>
+    <a class="nav-item active" href="/maintenance"><div class="nav-icon">🔧</div>Maintenance &amp; Insurance</a>
+    <a class="nav-item" href="/chat"><div class="nav-icon">💬</div>Car Assistant AI</a>
+    <a class="nav-item" href="/faq"><div class="nav-icon">🤖</div>FAQ Chatbot</a>
+    <div class="sb-section-label">Account</div>
+    <a class="nav-item" href="/settings"><div class="nav-icon">⚙️</div>Settings</a>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-avatar">J</div>
+      <div class="sb-user-info">
+        <div class="sb-name">Jane Doe</div>
+        <div class="sb-role">My Garage · 1 Vehicle</div>
+      </div>
+    </div>
+    <div class="sb-signout" onclick="doLogout()"><span>⬅</span> Sign out</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-breadcrumb">VahanSathi <span>/ Maintenance &amp; Insurance</span></div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge">Service Ready</span>
+      <div class="topbar-btn">🔔</div>
+      <div class="topbar-btn">❓</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="welcome-strip">
+      <div class="ws-left">
+        <div class="ws-greeting">Service &amp; Insurance</div>
+        <div class="ws-title">Maintenance &amp; Insurance</div>
+        <div class="ws-sub">Log every service, protect your investment, track your policy</div>
+      </div>
+      <div class="ws-stats">
+        <div class="ws-stat"><div class="ws-stat-num" id="ws-recs">0</div><div class="ws-stat-lbl">Service Logs</div></div>
+        <div class="ws-stat"><div class="ws-stat-num" id="ws-ins-st">—</div><div class="ws-stat-lbl">Insurance</div></div>
+        <div class="ws-stat"><div class="ws-stat-num" id="ws-ins-files">0</div><div class="ws-stat-lbl">Docs</div></div>
+      </div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-card">
+        <div class="sc-icon blue">📋</div>
+        <div>
+          <div class="sc-label">Total Services</div>
+          <div class="sc-val" id="sc-recs">0 records</div>
+          <div class="sc-sub">Logged service history</div>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="sc-icon amber">🛡️</div>
+        <div>
+          <div class="sc-label">Insurance Status</div>
+          <div class="sc-val" id="sc-ins">Not added</div>
+          <div class="sc-sub">Policy details</div>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="sc-icon green">🗂️</div>
+        <div>
+          <div class="sc-label">Insurance Files</div>
+          <div class="sc-val" id="sc-ins-files">0 files</div>
+          <div class="sc-sub">Uploaded documents</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- LOG MAINTENANCE -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-row">
+            <div class="card-icon-box">🔧</div>
+            <span class="card-title">Log Service Record</span>
+          </div>
+        </div>
+        <!-- Car selector (required by schema) -->
+        <div class="field">
+          <label>Car *</label>
+          <select id="svc-car">
+            <option value="">Select your car</option>
+            <option value="car1">My Car (e.g. Maruti Swift)</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Service Type *</label>
+            <select id="svc-type">
+              <option>Oil Change</option>
+              <option>Brake Service</option>
+              <option>Tire Rotation</option>
+              <option>General Service</option>
+              <option>Battery Replacement</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Date *</label>
+            <input type="date" id="svc-date"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Service Center</label>
+          <input type="text" id="svc-center" placeholder="e.g. Maruti Authorised Service, Pune"/>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Odometer (km)</label>
+            <input type="number" id="svc-odo" placeholder="e.g. 45000"/>
+          </div>
+          <div class="field">
+            <label>Cost (₹)</label>
+            <input type="number" id="svc-cost" placeholder="e.g. 2500"/>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Next Service Due</label>
+            <input type="date" id="svc-next"/>
+          </div>
+          <div class="field">
+            <label>Invoice</label>
+            <label for="svc-invoice" class="invoice-upload-btn">📎 Attach Invoice</label>
+            <input type="file" id="svc-invoice" accept=".pdf,.jpg,.jpeg,.png" onchange="showInvoiceFile(this)" style="display:none"/>
+            <div id="svc-invoice-name" style="font-size:11px;color:var(--text-soft);margin-top:4px"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Description / Notes</label>
+          <textarea id="svc-notes" rows="2" placeholder="e.g. Changed Castrol GTX 5W-30, aligned wheels"></textarea>
+        </div>
+        <button class="btn-sm" onclick="addRecord()">+ Add Record</button>
+      </div>
+
+      <!-- INSURANCE -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-row">
+            <div class="card-icon-box amber-bg">🛡️</div>
+            <span class="card-title">Insurance Documents</span>
+          </div>
+          <span class="card-count" id="ins-count">0 files</span>
+        </div>
+        <div id="ins-display">
+          <div class="ins-empty-state">No insurance card added yet.<br>Fill in details or upload below.</div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Provider</label><input type="text" id="ins-provider" placeholder="e.g. Bajaj Allianz"/></div>
+          <div class="field"><label>Policy No.</label><input type="text" id="ins-policy" placeholder="e.g. OG-12-345"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Valid From</label><input type="date" id="ins-from"/></div>
+          <div class="field"><label>Valid Until</label><input type="date" id="ins-to"/></div>
+        </div>
+        <button class="btn-sm green-btn" onclick="saveInsurance()" style="margin-bottom:12px">💾 Save Insurance Info</button>
+        <div class="upload-zone" onclick="document.getElementById('ins-input').click()"
+          ondragover="handleDrag(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'ins-list','ins-count')">
+          <input type="file" id="ins-input" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(this.files,'ins-list','ins-count')"/>
+          <span class="uz-icon">🗂️</span>
+          <div class="uz-title">Upload insurance docs</div>
+          <div class="uz-sub">PDF, JPG, PNG · <span>click to browse</span></div>
+        </div>
+        <div class="file-list" id="ins-list"></div>
+      </div>
+
+      <!-- SERVICE HISTORY TABLE -->
+      <div class="card grid-full">
+        <div class="card-header">
+          <div class="card-title-row">
+            <div class="card-icon-box green-bg">📋</div>
+            <span class="card-title">Service History</span>
+          </div>
+          <span class="card-count" id="rec-count">0 records</span>
+        </div>
+        <div id="records-wrap">
+          <div class="empty">No records logged yet. Add your first service record above.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+let records=[];
+
+async function addRecord(){
+  const type=document.getElementById('svc-type').value;
+  const date=document.getElementById('svc-date').value;
+  const center=document.getElementById('svc-center').value.trim();
+  const odo=document.getElementById('svc-odo').value;
+  const cost=document.getElementById('svc-cost').value;
+  const notes=document.getElementById('svc-notes').value.trim();
+  const nextDue=document.getElementById('svc-next').value;
+  const car=document.getElementById('svc-car').value;
+  if(!date){alert('Please enter the service date.');return;}
+  
+  const fd = new FormData();
+  fd.append("type", type); fd.append("date", date); fd.append("center", center);
+  fd.append("odo", odo); fd.append("cost", cost); fd.append("notes", notes);
+  fd.append("next", nextDue); fd.append("car", car);
+  const inv = document.getElementById('svc-invoice');
+  if(inv.files.length) fd.append("images", inv.files[0]);
+
+  try {
+    const res = await fetch("/api/records/service", {method:"POST", body:fd});
+    if(res.ok) {
+      document.getElementById('svc-date').value='';
+      document.getElementById('svc-odo').value='';
+      document.getElementById('svc-cost').value='';
+      document.getElementById('svc-notes').value='';
+      document.getElementById('svc-center').value='';
+      document.getElementById('svc-next').value='';
+      document.getElementById('svc-invoice').value='';
+      document.getElementById('svc-invoice-name').textContent='';
+      loadSavedRecords();
+    }
+  } catch(e){}
+}
+function showInvoiceFile(input){
+  if(input.files&&input.files[0]){
+    document.getElementById('svc-invoice-name').textContent='📎 '+input.files[0].name;
+  }
+}
+
+function renderRecords(){
+  const wrap=document.getElementById('records-wrap');
+  const n=records.length;
+  document.getElementById('rec-count').textContent=n+' record'+(n===1?'':'s');
+  document.getElementById('sc-recs').textContent=n+' record'+(n===1?'':'s');
+  document.getElementById('ws-recs').textContent=n;
+  if(!n){wrap.innerHTML='<div class="empty">No records logged yet.</div>';return;}
+  wrap.innerHTML=`<table class="records-table"><thead><tr><th>Service</th><th>Date</th><th>Odometer</th><th>Cost</th><th>Notes</th><th>Next Due</th><th>Document</th><th>Status</th></tr></thead><tbody>
+  ${records.map(r=>{
+    const fmt=new Date(r.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+    const nxt=r.next_due?new Date(r.next_due).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'–';
+    const fil=r.file_paths? `<a href="${r.file_paths.split(',')[0]}" target="_blank">📎 View</a>` : '–';
+    return`<tr><td><strong>${r.service_type}</strong>${r.center?'<div style="font-size:11px;color:var(--text-soft)">'+r.center+'</div>':''}</td><td>${fmt}</td><td>${r.odo?Number(r.odo).toLocaleString()+' km':'–'}</td><td>${r.cost?'₹'+Number(r.cost).toLocaleString():'–'}</td><td style="color:var(--text-soft);font-size:12px">${r.notes||'–'}</td><td style="font-size:12px;color:var(--text-soft)">${nxt}</td><td style="font-size:12px">${fil}</td><td><span class="badge done">Done</span></td></tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+// Function replaced by real delete via DB if requested later
+function deleteRecord(id){records=records.filter(r=>r.id!==id);renderRecords();}
+
+
+async function saveInsurance(){
+  const provider=document.getElementById('ins-provider').value.trim();
+  const policy=document.getElementById('ins-policy').value.trim();
+  const from=document.getElementById('ins-from').value;
+  const to=document.getElementById('ins-to').value;
+  if(!provider||!policy){alert('Enter provider and policy number.');return;}
+  
+  const fd = new FormData();
+  fd.append("provider", provider); fd.append("policy", policy);
+  fd.append("from", from); fd.append("to", to);
+  
+  const list = document.getElementById('ins-list');
+  list.querySelectorAll('.new-upload').forEach(el => {
+    if (el._fileObj) fd.append("images", el._fileObj);
+  });
+
+  try {
+    const res = await fetch("/api/records/insurance", {method:"POST", body:fd});
+    if(res.ok) {
+      document.getElementById('ins-provider').value='';
+      document.getElementById('ins-policy').value='';
+      document.getElementById('ins-from').value='';
+      document.getElementById('ins-to').value='';
+      list.innerHTML = '';
+      loadSavedRecords();
+    }
+  } catch(e){}
+}
+
+function handleFiles(files,listId,countId){
+  const list=document.getElementById(listId);
+  Array.from(files).forEach(f=>{
+    const ext=f.name.split('.').pop().toLowerCase();
+    const icon=ext==='pdf'?'📕':'🖼️';
+    const size=(f.size/1024).toFixed(1)+' KB';
+    const item=document.createElement('div');
+    item.className='file-item new-upload';
+    item._fileObj = f;
+    item.innerHTML=`<span class="fi-icon" style="min-width:20px;text-align:center">${icon}</span><span class="fi-name">${f.name}</span><span class="fi-size">${size}</span><span class="fi-del" onclick="removeItem(this,'${listId}','${countId}')">✕</span>`;
+    list.appendChild(item);
+  });
+  updateCount(listId,countId);
+}
+function removeItem(el,listId,countId){el.closest('.file-item').remove();updateCount(listId,countId);}
+function updateCount(listId,countId){
+  const n=document.getElementById(listId).querySelectorAll('.file-item').length;
+  document.getElementById(countId).textContent=n+' file'+(n===1?'':'s');
+  document.getElementById('sc-ins-files').textContent=n+' file'+(n===1?'':'s');
+  document.getElementById('ws-ins-files').textContent=n;
+}
+function handleDrag(e,zone){e.preventDefault();zone.classList.add('over');}
+function handleDragLeave(zone){zone.classList.remove('over');}
+function handleDrop(e,listId,countId){e.preventDefault();e.currentTarget.classList.remove('over');handleFiles(e.dataTransfer.files,listId,countId);}
+
+async function loadSavedRecords() {
+  try {
+    const res = await fetch('/api/records/service');
+    const data = await res.json();
+    if(data.ok && data.records) {
+      records = data.records;
+      renderRecords();
+    }
+  } catch(e){}
+
+  try {
+    const res2 = await fetch('/api/records/insurance');
+    const data2 = await res2.json();
+    if(data2.ok && data2.records && data2.records.length > 0) {
+      const r = data2.records[0]; // Active Policy
+      const fmt = d => d ? new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '–';
+      const fil = r.file_paths ? `<div style="margin-top:8px"><a href="${r.file_paths.split(',')[0]}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:12px">📎 View Policy Document</a></div>` : '';
+      document.getElementById('ins-display').innerHTML=`<div class="ins-card"><div class="ins-card-label">Insurance Policy</div><div class="ins-card-name">${r.provider}</div><div class="ins-card-num">Policy No: ${r.policy}</div><div class="ins-card-row"><div class="ins-card-field"><label>Valid From</label><span>${fmt(r.valid_from)}</span></div><div class="ins-card-field"><label>Valid Until</label><span>${fmt(r.valid_until)}</span></div></div>${fil}</div>`;
+      document.getElementById('sc-ins').textContent='Active';
+      document.getElementById('ws-ins-st').textContent='✓';
+      document.getElementById('ws-ins-files').textContent = data2.records.length;
+      document.getElementById('sc-ins-files').textContent = data2.records.length + " files";
+    }
+  } catch(e){}
+}
+loadSavedRecords();
+</script>
+  <script src="/static/user_session.js"></script>
+</body>
+</html>

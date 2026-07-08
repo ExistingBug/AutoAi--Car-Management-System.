@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VahanSathi – Sign In</title>
+  <meta name="description"
+    content="VahanSathi – Your intelligent vehicle management companion. Manage documents, track maintenance, and get AI car recommendations." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --sky: #EAF4FB;
+      --blue: #3A8DCA;
+      --blue-dark: #2670A8;
+      --blue-light: #5BACD6;
+      --blue-pale: #C8E4F5;
+      --amber: #F5A623;
+      --amber-glow: #FAC05E;
+      --white: #FFFFFF;
+      --text: #1A2533;
+      --text-mid: #5A6A7A;
+      --text-soft: #9AAABB;
+      --border: #D8EAF6;
+      --bg: #F0F7FE;
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh
+    }
+
+    /* ─── LEFT HERO PANEL ─── */
+    .hero {
+      width: 52%;
+      background: linear-gradient(160deg, #1A4D7A 0%, #2E7FBB 45%, #4AA8D8 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 52px 56px;
+      justify-content: space-between;
+    }
+
+    /* animated road lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 49.5%, rgba(255, 255, 255, 0.04) 49.5%, rgba(255, 255, 255, 0.04) 50.5%, transparent 50.5%),
+        linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.25) 100%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* glowing orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none
+    }
+
+    .orb1 {
+      width: 300px;
+      height: 300px;
+      background: rgba(250, 192, 94, 0.15);
+      top: -80px;
+      right: -60px
+    }
+
+    .orb2 {
+      width: 200px;
+      height: 200px;
+      background: rgba(91, 172, 214, 0.2);
+      bottom: 60px;
+      left: -40px
+    }
+
+    .orb3 {
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.08);
+      bottom: 200px;
+      right: 80px
+    }
+
+    .hero-logo {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .hero-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-logo-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: -0.3px
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(245, 166, 35, 0.2);
+      border: 1px solid rgba(245, 166, 35, 0.35);
+      color: var(--amber-glow);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .hero-h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-h1 em {
+      color: var(--amber-glow);
+      font-style: normal
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.75;
+      max-width: 340px;
+      margin-bottom: 36px
+    }
+
+    .hero-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .hero-feat {
+      display: flex;
+      align-items: center;
+      gap: 11px
+    }
+
+    .feat-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .feat-text {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500
+    }
+
+    .hero-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 28px;
+    }
+
+    .hero-stat {
+      text-align: left
+    }
+
+    .hero-stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'DM Serif Display', serif
+    }
+
+    .hero-stat-lbl {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.55);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1px
+    }
+
+    /* ─── RIGHT FORM PANEL ─── */
+    .form-panel {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 64px;
+    }
+
+    .form-welcome {
+      margin-bottom: 32px
+    }
+
+    .form-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.4px;
+      margin-bottom: 6px
+    }
+
+    .form-subtitle {
+      font-size: 13.5px;
+      color: var(--text-soft)
+    }
+
+    /* tab switcher */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--border)
+    }
+
+    .tab {
+      padding: 10px 20px 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-soft);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue)
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--text-mid)
+    }
+
+    /* form */
+    .form-section {
+      display: none
+    }
+
+    .form-section.active {
+      display: block
+    }
+
+    .field {
+      margin-bottom: 18px
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 12px 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--blue);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(58, 141, 202, 0.1)
+    }
+
+    .field input::placeholder {
+      color: var(--text-soft)
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(58, 141, 202, 0.35);
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 7px 22px rgba(58, 141, 202, 0.45)
+    }
+
+    .btn-submit:active {
+      transform: translateY(0)
+    }
+
+    .btn-arrow {
+      font-size: 16px;
+      transition: transform 0.2s
+    }
+
+    .btn-submit:hover .btn-arrow {
+      transform: translateX(4px)
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--text-soft);
+      font-size: 12px
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .demo-btn {
+      width: 100%;
+      padding: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--sky);
+      border: 1.5px solid var(--blue-pale);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .demo-btn:hover {
+      background: var(--blue-pale)
+    }
+
+    .msg {
+      font-size: 12.5px;
+      margin-top: 10px;
+      padding: 9px 13px;
+      border-radius: 8px;
+      display: none
+    }
+
+    .msg.err {
+      background: #fff0f0;
+      color: #c94040;
+      border: 1px solid #ffcdd2;
+      display: block
+    }
+
+    .msg.ok {
+      background: #eaf8ee;
+      color: #2e8b57;
+      border: 1px solid #b2dfdb;
+      display: block
+    }
+
+    .form-footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--text-soft);
+      text-align: center
+    }
+
+    .form-footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600
+    }
+
+    /* avatar upload widget */
+    .avatar-upload-row {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .avatar-preview {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-upload-btn {
+      display: inline-block;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--sky);
+      border: 1.5px solid var(--blue-pale);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .avatar-upload-btn:hover {
+      background: var(--blue-pale);
+    }
+
+    .avatar-hint {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+
+    <div class="hero-logo">
+      <div class="hero-logo-icon">🚗</div>
+      <span class="hero-logo-name">VahanSathi</span>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-eyebrow">✦ Your Vehicle Command Centre</div>
+      <h1 class="hero-h1">Drive Smart.<br>Stay <em>Always Ready.</em></h1>
+      <p class="hero-desc">Everything your car needs — documents, maintenance, insurance, and AI-powered car buying — in
+        one intelligent platform.</p>
+      <div class="hero-features">
+        <div class="hero-feat">
+          <div class="feat-dot">📁</div><span class="feat-text">Secure document vault for RC, insurance &amp; PUC</span>
+        </div>
+        <div class="hero-feat">
+          <div class="feat-dot">🔧</div><span class="feat-text">Maintenance logs &amp; smart service reminders</span>
+        </div>
+        <div class="hero-feat">
+          <div class="feat-dot">🤖</div><span class="feat-text">AI car recommendations powered by Machine
+            Learning</span>
+        </div>
+        <div class="hero-feat">
+          <div class="feat-dot">🛡️</div><span class="feat-text">Challan tracking &amp; insurance management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-footer">
+      <div class="hero-stat">
+        <div class="hero-stat-num">90+</div>
+        <div class="hero-stat-lbl">Cars in AI DB</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">32</div>
+        <div class="hero-stat-lbl">Features Analysed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">13</div>
+        <div class="hero-stat-lbl">Indian Cities</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-panel">
+    <div class="form-welcome">
+      <div class="form-title">Welcome back 👋</div>
+      <div class="form-subtitle">Sign in to your VahanSathi account to continue</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login',this)">Sign In</button>
+      <button class="tab" onclick="switchTab('register',this)">Create Account</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="form-section active" id="login">
+      <div class="field">
+        <label>📧 Email Address</label>
+        <input type="email" id="l-email" placeholder="you@email.com" />
+      </div>
+      <div class="field">
+        <label>🔒 Password</label>
+        <input type="password" id="l-pass" placeholder="Enter your password" />
+      </div>
+      <button class="btn-submit" onclick="doLogin()">Sign In <span class="btn-arrow">→</span></button>
+      <div class="msg" id="l-msg"></div>
+      <div class="divider">or</div>
+      <button class="demo-btn" onclick="quickDemo()">⚡ Quick Demo — Skip Sign In</button>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="form-section" id="register">
+      <div class="field">
+        <label>👤 Full Name</label>
+        <input type="text" id="r-name" placeholder="Your full name" />
+      </div>
+      <div class="field">
+        <label>📧 Email Address</label>
+        <input type="email" id="r-email" placeholder="you@email.com" />
+      </div>
+      <div class="field">
+        <label>📱 Phone Number</label>
+        <input type="tel" id="r-phone" placeholder="+91 98765 43210" />
+      </div>
+      <div class="field">
+        <label>🔒 Password</label>
+        <input type="password" id="r-pass" placeholder="Min. 8 characters" />
+      </div>
+      <div class="field">
+        <label>🖼️ Profile Picture</label>
+        <div class="avatar-upload-row">
+          <div class="avatar-preview" id="r-avatar-preview">👤</div>
+          <div class="avatar-upload-info">
+            <label for="r-avatar" class="avatar-upload-btn">Choose Photo</label>
+            <input type="file" id="r-avatar" accept="image/*" onchange="previewAvatar(this)" style="display:none" />
+            <div class="avatar-hint">JPG or PNG · max 2 MB</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="doRegister()">Create Account <span class="btn-arrow">→</span></button>
+      <div class="msg" id="r-msg"></div>
+    </div>
+
+    <div class="form-footer">By continuing you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy
+        Policy</a></div>
+  </div>
+
+  <script>
+    function switchTab(id, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById(id).classList.add('active');
+      document.querySelector('.form-title').textContent = id === 'login' ? 'Welcome back 👋' : 'Create your account';
+      document.querySelector('.form-subtitle').textContent = id === 'login' ? 'Sign in to your VahanSathi account to continue' : 'Join VahanSathi and take control of your vehicle';
+    }
+
+    function showMsg(id, text, type) {
+      const el = document.getElementById(id);
+      el.textContent = text;
+      el.className = 'msg ' + type;
+    }
+
+    /* ─── LOGIN ─── */
+    async function doLogin() {
+      const email = document.getElementById('l-email').value.trim();
+      const pass  = document.getElementById('l-pass').value.trim();
+      if (!email || !pass) { showMsg('l-msg', 'Please fill in all fields.', 'err'); return; }
+      if (!email.includes('@')) { showMsg('l-msg', 'Enter a valid email address.', 'err'); return; }
+
+      showMsg('l-msg', '⏳ Signing in…', 'ok');
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password: pass })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showMsg('l-msg', '✓ Signed in! Redirecting…', 'ok');
+          setTimeout(() => window.location.href = '/dashboard', 800);
+        } else {
+          showMsg('l-msg', data.error || 'Login failed', 'err');
+        }
+      } catch (err) {
+        showMsg('l-msg', 'Network error — please try again', 'err');
+      }
+    }
+
+    /* ─── REGISTER ─── */
+    async function doRegister() {
+      const name  = document.getElementById('r-name').value.trim();
+      const email = document.getElementById('r-email').value.trim();
+      const phone = document.getElementById('r-phone').value.trim();
+      const pass  = document.getElementById('r-pass').value.trim();
+      const avatar = document.getElementById('r-avatar').files[0];
+
+      if (!name)  { showMsg('r-msg', 'Please enter your full name.', 'err'); return; }
+      if (!email || !email.includes('@')) { showMsg('r-msg', 'Enter a valid email address.', 'err'); return; }
+      if (!phone) { showMsg('r-msg', 'Please enter your phone number.', 'err'); return; }
+      if (!pass || pass.length < 8) { showMsg('r-msg', 'Password must be at least 8 characters.', 'err'); return; }
+
+      showMsg('r-msg', '⏳ Creating account…', 'ok');
+
+      const fd = new FormData();
+      fd.append('name', name);
+      fd.append('email', email);
+      fd.append('phone', phone);
+      fd.append('password', pass);
+      if (avatar) fd.append('avatar', avatar);
+
+      try {
+        const res = await fetch('/api/register', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (data.ok) {
+          showMsg('r-msg', '✓ Account created! Redirecting…', 'ok');
+          setTimeout(() => window.location.href = '/dashboard', 800);
+        } else {
+          showMsg('r-msg', data.error || 'Registration failed', 'err');
+        }
+      } catch (err) {
+        showMsg('r-msg', 'Network error — please try again', 'err');
+      }
+    }
+
+    /* ─── AVATAR PREVIEW ─── */
+    function previewAvatar(input) {
+      if (!input.files || !input.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const prev = document.getElementById('r-avatar-preview');
+        prev.innerHTML = `<img src="${e.target.result}" alt="avatar"/>`;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    /* ─── QUICK DEMO ─── */
+    function quickDemo() {
+      showMsg('l-msg', '✓ Loading demo… redirecting!', 'ok');
+      setTimeout(() => window.location.href = '/dashboard', 800);
+    }
+  </script>
+</body>
+
+</html>
